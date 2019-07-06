@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol TranslateModuleViewOutputProtocol: class {
-  
+  func textDidChangeTo(text: String)
 }
 
 protocol TranslateModuleViewInputProtocol: class {

@@ -11,6 +11,7 @@ import Foundation
 
 protocol  TranslateModuleInteractorInputProtocol: class {
   var output: TranslateModuleInteractorOutputProtocol {get set}
+  func translate(text: String)
 }
 
 protocol  TranslateModuleInteractorOutputProtocol: class {

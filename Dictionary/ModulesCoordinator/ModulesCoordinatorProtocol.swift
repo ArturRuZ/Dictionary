@@ -1,5 +1,5 @@
 //
-//  TranslatedListModuleViewController.swift
+//  ModulesCoordinatorProtocol.swift
 //  Dictionary
 //
 //  Created by Артур on 06/07/2019.
@@ -9,6 +9,6 @@
 import UIKit
 
 
-final class TranslatedListModuleViewController: UIViewController {
-  
+protocol ModulesCoordinatorProtocol: class {
+  func getRootController() -> UIViewController
 }
