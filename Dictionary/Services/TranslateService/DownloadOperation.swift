@@ -1,5 +1,5 @@
 //
-//  TranslateOperation.swift
+//  DownloadOperation.swift
 //  Dictionary
 //
 //  Created by Артур on 06/07/2019.
@@ -9,16 +9,24 @@
 import Foundation
 
 
-final class  TranslateOperation: Operation {
+final class  DownloadOperation: Operation {
+  
+  // MARK: - Properties
+  
   private var task: URLSessionDataTask?
   private var url: URL
   private let completion: (Data?, Error?) -> Void
+  
+  // MARK: - Initialization
   
   init(url: URL, completion: @escaping (Data?, Error?) -> Void ) {
     self.url = url
     self.completion = completion
     super.init()
   }
+  
+  // MARK: - BuildIn Methods
+  
   override func main() {
     let semaphore = DispatchSemaphore(value: 0)
     task = URLSession.shared.dataTask(with: url, completionHandler: { (data,response,error) in
@@ -41,5 +49,4 @@ final class  TranslateOperation: Operation {
     super.cancel()
     task?.cancel()
   }
-  
 }

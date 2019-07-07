@@ -9,26 +9,17 @@
 import Foundation
 
 
-enum translationLanguages: String {
-  case ru = "ru"
-  case en = "en"
-  case fr = "fr"
-  case es = "es"
-  
-}
-
 enum ErrorsList: Error {
   case urlIsIncorrect
   case errorData
   case translateIsCanceled
-  case timeout
+  case fetchRequestBuildFailed(_ :String)
+  case couldntCastObjectToNecessaryType(_ :String)
+  case couldntInitEntity(_ :String)
 }
 
 
 protocol TranslateServiceProtocol: class {
-  func loadData<T>(fromURL: URL?,
-                   parseInto container: T.Type,
-                   success: @escaping (T) -> Void,
-                   failure: @escaping (Error) -> Void) where T : Codable 
+  func translateData<T>(fromURL: URL?, parseInto container: T.Type,completion: @escaping (T?, Error?) -> Void) where T : Codable
 }
 

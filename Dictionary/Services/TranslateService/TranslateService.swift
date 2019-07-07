@@ -11,47 +11,45 @@ import Foundation
 
 final class TranslateService {
   
+  // MARK: - Properties
+  
   private var operationQueue = OperationQueue()
+  
+  // MARK: - Initialization
   
   init(){
     operationQueue.name = "Translation queue"
     operationQueue.maxConcurrentOperationCount = 1
   }
   
-  private func parse<T>(data: Data,
-                        container: T.Type,
-                        success: @escaping (T) -> Void,
-                        failure: (Error) -> Void) where T : Codable {
+  // MARK: - Private methods
+  
+  private func parse<T>(data: Data, container: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Codable {
     do {
       let response = try JSONDecoder().decode(container, from: data)
       DispatchQueue.main.async {
-        success(response)
+        completion (response, nil)
       }
     } catch {
-      failure(error)
+      completion (nil, error)
     }
   }
-  
 }
 
+// MARK: - TranslateServiceProtocol implementation
+
 extension TranslateService: TranslateServiceProtocol {
-  func loadData<T>(fromURL: URL?,
-                   parseInto container: T.Type,
-                   success: @escaping (T) -> Void,
-                   failure: @escaping (Error) -> Void) where T : Codable {
+  func translateData<T>(fromURL: URL?, parseInto container: T.Type, completion: @escaping (T?, Error?) -> Void) where T : Codable {
     guard let url = fromURL else {
-      failure(ErrorsList.urlIsIncorrect)
+      completion (nil, ErrorsList.urlIsIncorrect)
       return
     }
     operationQueue.cancelAllOperations()
     operationQueue.addOperation (
-      TranslateOperation(url: url, completion: { [weak self] (data, error) in
+      DownloadOperation(url: url, completion: { [weak self] (data, error) in
         guard let self = self else {return}
-        if let error = error { failure(error) } else {
-          self.parse(data: data!,
-                     container: container,
-                     success: success,
-                     failure: failure)
+        if let error = error { completion (nil, error) } else {
+          self.parse(data: data!, container: container, completion: completion)
         }
       })
     )

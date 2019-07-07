@@ -16,26 +16,79 @@ final class TranslateModuleViewController: UIViewController {
   @IBOutlet weak var textForTranslate: UITextView!
   @IBOutlet weak var translatedText: UITextView!
   private var viewOutput: TranslateModuleViewOutputProtocol!
-    private let defaultForTranslateText = "Text for translate"
-     private let defaultTranslatedText = "Translated text"
+  private var dictionaryObject: DictionaryObjectProtocol?
+  private lazy var changeLanguageDirectionButton: UIButton = {
+    let changeLanguageDirectionButton = UIButton(type: .system)
+    changeLanguageDirectionButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+    changeLanguageDirectionButton.addTarget(self, action: #selector(changeLanguageDirection), for: .touchUpInside)
+    changeLanguageDirectionButton.setImage(UIImage(named: "baseline_compare_arrows_black_36pt_1x.png"), for: .normal)
+    return changeLanguageDirectionButton
+  }()
+  private lazy var selectFromLanguageButton: UIButton = {
+    let selectFromLanguageButton = UIButton(type: .system)
+    selectFromLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
+    selectFromLanguageButton.addTarget(self, action: #selector(selectLanguage), for: .touchUpInside)
+    
+    return selectFromLanguageButton
+  }()
+  private lazy var selectToLanguageButton: UIButton = {
+    let selectToLanguageButton = UIButton(type: .system)
+    selectToLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
+    selectToLanguageButton.addTarget(self, action: #selector(selectLanguage), for: .touchUpInside)
+    return selectToLanguageButton
+  }()
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupUI()
+    output.viewDidLoad()
+    textForTranslate.delegate = self
+    translatedText.delegate = self
+    configureNavigationBar()
+  }
+ 
+  
+  private func configureNavigationBar() {
+    self.navigationController?.navigationBar.isTranslucent = true
+    self.navigationItem.titleView = changeLanguageDirectionButton
+    let rightSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+    rightSpacer.width = 80
+    let leftSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+    leftSpacer.width = 80
+    self.navigationItem.leftBarButtonItems = [leftSpacer, UIBarButtonItem(customView: selectFromLanguageButton)]
+    self.navigationItem.rightBarButtonItems = [rightSpacer, UIBarButtonItem(customView: selectToLanguageButton)]
+  }
+  private func updateUI() {
+    guard let object = self.dictionaryObject else {return}
+    textForTranslate.text = object.textForTranslate
+    translatedText.text = object.translatedText
+    selectFromLanguageButton.setTitle(languagesDictionary[(object.languageFrom.rawValue)], for: .normal)
+    selectToLanguageButton.setTitle(languagesDictionary[(object.languageTo.rawValue)], for: .normal)
     
   }
   
-  private func setupUI(){
-    textForTranslate.delegate = self
-    translatedText.delegate = self
-    textForTranslate.text = defaultForTranslateText
-    translatedText.text = defaultTranslatedText
+  @objc func selectLanguage(_ sender: UIButton) {
+    
   }
+  
+  
+  
+  @objc func changeLanguageDirection(_ sender: UIButton) {
+    guard  self.dictionaryObject != nil else {return}
+    self.dictionaryObject?.changeLanguageDirection()
+    updateUI()
+    
+  }
+  
   
 }
 
+// MARK: - TranslateModuleViewInputProtocol implementation
+
 extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
+  
+  // MARK: - TranslateModuleViewInputProtocol properties
+  
   var output: TranslateModuleViewOutputProtocol {
     get {
       return viewOutput
@@ -44,21 +97,39 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
       viewOutput = newValue
     }
   }
+  
+  // MARK: - TranslateModuleViewInputProtocol methods
+  
+  func show(dictionaryObject: DictionaryObjectProtocol) {
+    self.dictionaryObject = dictionaryObject
+    updateUI()
+  }
 }
+
+
 
 extension TranslateModuleViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-    if textForTranslate.text == defaultForTranslateText {
+    if self.dictionaryObject?.time == nil {
       textForTranslate.text = ""
       translatedText.text = ""
     }
     return true
   }
   
-  func textViewDidChange(_ textView: UITextView) {
-    output.textDidChangeTo(text: textView.text)
+  func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    if(text == "\n") {
+      textView.resignFirstResponder()
+      return true
+    }
+    return true
   }
   
   
+  func textViewDidEndEditing(_ textView: UITextView) {
+    guard let object = self.dictionaryObject else {return}
+    object.textForTranslate = textView.text
+    output.endEditing(dictionaryObject: object)
+  }
 }
 

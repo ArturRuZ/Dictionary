@@ -11,9 +11,10 @@ import Foundation
 
 protocol  TranslateModuleInteractorInputProtocol: class {
   var output: TranslateModuleInteractorOutputProtocol {get set}
-  func translate(text: String)
+  func translate(data: DictionaryObjectProtocol)
+  func prepareDictionaryObject()
 }
 
 protocol  TranslateModuleInteractorOutputProtocol: class {
-  
+  func prepared(dictionaryObject: DictionaryObjectProtocol)
 }

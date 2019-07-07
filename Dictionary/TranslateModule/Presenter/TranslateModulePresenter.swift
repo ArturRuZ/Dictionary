@@ -53,13 +53,21 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
 // MARK: - TranslateModuleViewOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
-  func textDidChangeTo(text: String) {
-    interactor.translate(text: text)
+  func viewDidLoad() {
+   interactor.prepareDictionaryObject()
+  }
+  
+  func endEditing(dictionaryObject: DictionaryObjectProtocol) {
+    interactor.translate(data: dictionaryObject)
   }
 }
 
 // MARK: - TranslateModuleInteractorOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
+  func prepared(dictionaryObject: DictionaryObjectProtocol) {
+    view.show(dictionaryObject: dictionaryObject)
+  }
+  
   
 }
