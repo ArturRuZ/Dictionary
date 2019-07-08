@@ -62,9 +62,7 @@ extension ControllerBuilder: ControllerBuilderProtocol {
     let translateModuleListVC = self.createTranslatedListModuleController()
     translateModuleVC.tabBarItem = UITabBarItem(title: "Translate", image: UIImage(named: "baseline_translate_black_36pt_1x.png"), tag: 0)
     translateModuleListVC.tabBarItem = UITabBarItem(title: "Dictionary", image: UIImage(named: "baseline_library_books_black_36pt_1x.png"), tag: 1)
-    let mok2 = UIViewController()
-    mok2.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "baseline_settings_black_36pt_1x.png"), tag: 2)
-    tabBarController.setViewControllers([translateModuleVC, translateModuleListVC, mok2], animated: false)
+    tabBarController.setViewControllers([translateModuleVC, translateModuleListVC], animated: false)
     tabBarController.selectedIndex = 0
     return tabBarController
   }
