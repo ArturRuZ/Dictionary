@@ -11,7 +11,7 @@ import Foundation
 
 final class TranslateModuleInteractor {
   
-    // MARK: - Properties
+  // MARK: - Properties
   
   var interactorOutput: TranslateModuleInteractorOutputProtocol!
   private let translateService: TranslateServiceProtocol
@@ -19,12 +19,14 @@ final class TranslateModuleInteractor {
   private let defaultForTranslateText = "Text for translate"
   private let defaultTranslatedText = "Translated text"
   
+  // MARK: - Initialization
+  
   init(translateService: TranslateServiceProtocol, dataBase: DataBaseProtocol) {
     self.translateService = translateService
     self.dataBase = dataBase
   }
   
-    // MARK: - Private methods
+  // MARK: - Private methods
   
   private func buildUrlToTranslate(from: DictionaryObjectProtocol) -> URL? {
     let correctTextForTranslate = from.textForTranslate.replacingOccurrences(of: " ", with: "%20")
@@ -32,7 +34,7 @@ final class TranslateModuleInteractor {
     let url = "https://api.multillect.com/translate/json/1.0/1165?method=translate/api/translate&from=\(from.languageFrom)&to=\(from.languageTo)&text=\(encodedUrl)&sig=ac0089a730c066aea5a03168bbac6fd7"
     return URL(string: url)
   }
-
+  
   private func convertTime(time: Int)-> Date? {
     let date = Date(timeIntervalSince1970: TimeInterval(time) )
     let dateFormatter = DateFormatter()
@@ -45,7 +47,7 @@ final class TranslateModuleInteractor {
   
 }
 
- // MARK: - TranslateModuleInteractorInputProtocol implementation
+// MARK: - TranslateModuleInteractorInputProtocol implementation
 
 extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   var output: TranslateModuleInteractorOutputProtocol {
@@ -58,8 +60,9 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   }
   
   func prepareDictionaryObject() {
-    let object = DictionaryObject(languageFrom: .en, languageTo: .ru, textForTranslate: defaultForTranslateText, translatedText: defaultTranslatedText, time: nil)
-    output.prepared(dictionaryObject: object)
+    
+    let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru, textForTranslate: defaultForTranslateText, translatedText: defaultTranslatedText, time: nil)
+    output.prepared(dictionaryObject: dictionaryObject)
   }
   
   func translate(data: DictionaryObjectProtocol) {
@@ -78,7 +81,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
           if let error = result.error {print (error)}
         }
       }
-    }
-  )}
+      }
+    )}
 }
 

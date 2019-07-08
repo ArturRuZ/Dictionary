@@ -13,5 +13,6 @@ protocol TranslateModulePresenterInputProtocol: class {
   var delegate: TranslateModulePresenterDelegateProtocol {get set}
   var input: TranslateModuleInteractorInputProtocol {get set}
   var output: TranslateModuleViewInputProtocol {get set}
+  func show(Translatefor: DictionaryObjectProtocol)
 }
 protocol TranslateModulePresenterDelegateProtocol: class {}

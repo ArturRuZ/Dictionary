@@ -38,3 +38,15 @@ extension ModulesCoordinator: ModulesCoordinatorProtocol {
 extension ModulesCoordinator: TranslateModulePresenterDelegateProtocol {
   
 }
+
+extension ModulesCoordinator: TranslatedListModulePresenterDelegateProtocol {
+  func show(translateFor: TranslatedListCellModel) {
+    guard let tabbarController = self.rootController as? UITabBarController else {return}
+    guard let presenter = self.controllerBuilder.getTranslateModulePresenter() else {return}
+    let object =  DictionaryObject(languageFrom: .en, languageTo: .ru, textForTranslate: translateFor.textForTranslate, translatedText: translateFor.translatedText, time: translateFor.time)
+    presenter.show(Translatefor: object)
+    tabbarController.selectedIndex = 0
+  }
+  
+  
+}

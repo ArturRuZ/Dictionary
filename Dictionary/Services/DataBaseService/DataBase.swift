@@ -44,6 +44,10 @@ final class DataBase: NSObject {
     if byAttribute != "" && forValue != "" {
       fetchRequest.predicate = NSPredicate(format: "\(byAttribute) = %@", "\(forValue)")
     }
+    if inEntity.rawValue == ObjectsList.dictionaryHistory.rawValue {
+      let sort = NSSortDescriptor(key: "time", ascending: true)
+      fetchRequest.sortDescriptors = [sort]
+    }
     fetchRequest.returnsObjectsAsFaults = false
     return fetchRequest
   }
@@ -145,12 +149,15 @@ extension DataBase: DataBaseProtocol {
   private func findObjects<T>(with: ObjectSearchParametrs, inObjects: ObjectsList, inContext: NSManagedObjectContext) throws -> [T] {
     var fetchRequest: NSFetchRequest<NSFetchRequestResult>?
     switch with {
+    case .textForTranslate(let textForTranslate): fetchRequest = self.setupFetchRequest(inEntity: inObjects, byAttribute: "textForTranslate", forValue: "\(textForTranslate)")
     case .all:
       fetchRequest = self.setupFetchRequest(inEntity: inObjects, byAttribute: "", forValue: "")
     }
+   
     guard fetchRequest != nil else {throw ErrorsList.fetchRequestBuildFailed("\(String(describing: fetchRequest))")}
     guard let findItems = try? inContext.fetch(fetchRequest!) as? [T] else {throw ErrorsList.couldntCastObjectToNecessaryType("\(T.self)")}
     return findItems
   }
 }
+
 

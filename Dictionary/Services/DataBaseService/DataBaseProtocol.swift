@@ -11,6 +11,7 @@ import Foundation
 
 enum ObjectSearchParametrs {
   case all
+  case textForTranslate (textForTranslate: String)
 }
 
 enum ObjectSaveParametrs {

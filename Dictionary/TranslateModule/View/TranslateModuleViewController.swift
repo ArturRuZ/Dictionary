@@ -71,16 +71,11 @@ final class TranslateModuleViewController: UIViewController {
     
   }
   
-  
-  
   @objc func changeLanguageDirection(_ sender: UIButton) {
     guard  self.dictionaryObject != nil else {return}
     self.dictionaryObject?.changeLanguageDirection()
     updateUI()
-    
   }
-  
-  
 }
 
 // MARK: - TranslateModuleViewInputProtocol implementation
@@ -106,8 +101,6 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
   }
 }
 
-
-
 extension TranslateModuleViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
     if self.dictionaryObject?.time == nil {
@@ -124,7 +117,6 @@ extension TranslateModuleViewController: UITextViewDelegate {
     }
     return true
   }
-  
   
   func textViewDidEndEditing(_ textView: UITextView) {
     guard let object = self.dictionaryObject else {return}

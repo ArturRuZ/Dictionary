@@ -11,8 +11,11 @@ import Foundation
 
 protocol  TranslatedListModuleInteractorInputProtocol: class {
   var output: TranslatedListModuleInteractorOutputProtocol {get set}
+  func downloadDictionaryHistory(with: ObjectSearchParametrs)
+  func clearDictionary()
+  func search(text: String)
 }
 
 protocol  TranslatedListModuleInteractorOutputProtocol: class {
-  
+  func prepared(dictionary: [TranslatedListCellModel])
 }

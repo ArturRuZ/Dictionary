@@ -48,6 +48,9 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       view = newValue
     }
   }
+  func show(Translatefor: DictionaryObjectProtocol) {
+    self.output.show(dictionaryObject: Translatefor)
+  }
 }
 
 // MARK: - TranslateModuleViewOutputProtocol implementation
@@ -68,6 +71,4 @@ extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
   func prepared(dictionaryObject: DictionaryObjectProtocol) {
     view.show(dictionaryObject: dictionaryObject)
   }
-  
-  
 }

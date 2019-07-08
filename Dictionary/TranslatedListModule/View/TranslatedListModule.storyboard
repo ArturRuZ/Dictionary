@@ -17,13 +17,36 @@
                     <view key="view" contentMode="scaleToFill" id="bbp-g5-Lei">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i6t-WD-rmP">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="itR-yN-nra">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="i6t-WD-rmP" firstAttribute="leading" secondItem="4Cq-ib-VsU" secondAttribute="leading" id="2my-OW-L7H"/>
+                            <constraint firstItem="i6t-WD-rmP" firstAttribute="top" secondItem="itR-yN-nra" secondAttribute="bottom" id="DhD-Gr-xYS"/>
+                            <constraint firstItem="itR-yN-nra" firstAttribute="top" secondItem="4Cq-ib-VsU" secondAttribute="top" id="PE1-4t-VxF"/>
+                            <constraint firstItem="4Cq-ib-VsU" firstAttribute="bottom" secondItem="i6t-WD-rmP" secondAttribute="bottom" id="V1Y-yo-xVR"/>
+                            <constraint firstItem="itR-yN-nra" firstAttribute="leading" secondItem="4Cq-ib-VsU" secondAttribute="leading" id="eo4-aP-XXf"/>
+                            <constraint firstItem="itR-yN-nra" firstAttribute="trailing" secondItem="4Cq-ib-VsU" secondAttribute="trailing" id="poH-lg-SbL"/>
+                            <constraint firstItem="4Cq-ib-VsU" firstAttribute="trailing" secondItem="i6t-WD-rmP" secondAttribute="trailing" id="xwO-x5-ptk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4Cq-ib-VsU"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="itR-yN-nra" id="7OR-xQ-Xla"/>
+                        <outlet property="translatedListTableView" destination="i6t-WD-rmP" id="Xcm-Jv-7CX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Piy-TE-zBV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-101" y="-11"/>
+            <point key="canvasLocation" x="-101.44927536231884" y="-11.383928571428571"/>
         </scene>
     </scenes>
 </document>
