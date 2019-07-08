@@ -27,6 +27,31 @@
 		348BF84022D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF83F22D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift */; };
 		348BF84222D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84122D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift */; };
 		348BF84422D0C7B80057350A /* TranslatedListModuleInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84322D0C7B80057350A /* TranslatedListModuleInteractorProtocol.swift */; };
+		348BF84722D0D0CE0057350A /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84622D0D0CE0057350A /* Application.swift */; };
+		348BF84922D0D2140057350A /* ModulesCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84822D0D2140057350A /* ModulesCoordinatorProtocol.swift */; };
+		348BF84C22D0DA6A0057350A /* ControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84B22D0DA6A0057350A /* ControllerBuilder.swift */; };
+		348BF84F22D0DA950057350A /* ControllerBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF84E22D0DA950057350A /* ControllerBuilderProtocol.swift */; };
+		348BF85122D0E1450057350A /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85022D0E1450057350A /* TranslateService.swift */; };
+		348BF85322D0E1800057350A /* TranslateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85222D0E1800057350A /* TranslateServiceProtocol.swift */; };
+		348BF85522D0E27F0057350A /* UIViewControllerStoryboardID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85422D0E27F0057350A /* UIViewControllerStoryboardID.swift */; };
+		348BF85722D0E2D70057350A /* StoryboardName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85622D0E2D70057350A /* StoryboardName.swift */; };
+		348BF85922D0EB330057350A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85822D0EB330057350A /* DataBase.swift */; };
+		348BF85B22D0EB600057350A /* DataBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85A22D0EB600057350A /* DataBaseProtocol.swift */; };
+		348BF85F22D12EB30057350A /* TranslationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85E22D12EB30057350A /* TranslationResponse.swift */; };
+		34C938C422D1E58800FD74D9 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C322D1E58700FD74D9 /* DownloadOperation.swift */; };
+		34C938C622D1E9B100FD74D9 /* DictionaryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */; };
+		34C938C822D1EA5200FD74D9 /* TranslationLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */; };
+		34C938CA22D1EAF600FD74D9 /* DictionaryObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C922D1EAF600FD74D9 /* DictionaryObjectProtocol.swift */; };
+		34C938CC22D26ABB00FD74D9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938CB22D26ABB00FD74D9 /* Result.swift */; };
+		34C938D022D26BA200FD74D9 /* DataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34C938CE22D26BA200FD74D9 /* DataStorage.xcdatamodeld */; };
+		34C938D522D26D4B00FD74D9 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938D122D26D4B00FD74D9 /* Settings+CoreDataClass.swift */; };
+		34C938D622D26D4B00FD74D9 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938D222D26D4B00FD74D9 /* Settings+CoreDataProperties.swift */; };
+		34C938D722D26D4B00FD74D9 /* DictionaryHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938D322D26D4B00FD74D9 /* DictionaryHistory+CoreDataClass.swift */; };
+		34C938D822D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938D422D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift */; };
+		34C938DB22D289AA00FD74D9 /* TranslatedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C938DA22D289AA00FD74D9 /* TranslatedListCell.xib */; };
+		34C938DD22D28BE600FD74D9 /* TranslatedListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938DC22D28BE600FD74D9 /* TranslatedListCellView.swift */; };
+		34C938DF22D28C8D00FD74D9 /* TranslatedListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938DE22D28C8D00FD74D9 /* TranslatedListCellModel.swift */; };
+		34C938E122D2A5DC00FD74D9 /* TranslatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938E022D2A5DC00FD74D9 /* TranslatedObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +77,31 @@
 		348BF83F22D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListModuleViewControllerProtocol.swift; sourceTree = "<group>"; };
 		348BF84122D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListModulePresenterProtocol.swift; sourceTree = "<group>"; };
 		348BF84322D0C7B80057350A /* TranslatedListModuleInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListModuleInteractorProtocol.swift; sourceTree = "<group>"; };
+		348BF84622D0D0CE0057350A /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		348BF84822D0D2140057350A /* ModulesCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		348BF84B22D0DA6A0057350A /* ControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBuilder.swift; sourceTree = "<group>"; };
+		348BF84E22D0DA950057350A /* ControllerBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerBuilderProtocol.swift; sourceTree = "<group>"; };
+		348BF85022D0E1450057350A /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
+		348BF85222D0E1800057350A /* TranslateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceProtocol.swift; sourceTree = "<group>"; };
+		348BF85422D0E27F0057350A /* UIViewControllerStoryboardID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerStoryboardID.swift; sourceTree = "<group>"; };
+		348BF85622D0E2D70057350A /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
+		348BF85822D0EB330057350A /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		348BF85A22D0EB600057350A /* DataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseProtocol.swift; sourceTree = "<group>"; };
+		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResponse.swift; sourceTree = "<group>"; };
+		34C938C322D1E58700FD74D9 /* DownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
+		34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryObject.swift; sourceTree = "<group>"; };
+		34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLanguages.swift; sourceTree = "<group>"; };
+		34C938C922D1EAF600FD74D9 /* DictionaryObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryObjectProtocol.swift; sourceTree = "<group>"; };
+		34C938CB22D26ABB00FD74D9 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		34C938CF22D26BA200FD74D9 /* DataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataStorage.xcdatamodel; sourceTree = "<group>"; };
+		34C938D122D26D4B00FD74D9 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		34C938D222D26D4B00FD74D9 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		34C938D322D26D4B00FD74D9 /* DictionaryHistory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		34C938D422D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryHistory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		34C938DA22D289AA00FD74D9 /* TranslatedListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TranslatedListCell.xib; sourceTree = "<group>"; };
+		34C938DC22D28BE600FD74D9 /* TranslatedListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListCellView.swift; sourceTree = "<group>"; };
+		34C938DE22D28C8D00FD74D9 /* TranslatedListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListCellModel.swift; sourceTree = "<group>"; };
+		34C938E022D2A5DC00FD74D9 /* TranslatedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +173,9 @@
 		348BF81022D0BD350057350A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				348BF85422D0E27F0057350A /* UIViewControllerStoryboardID.swift */,
+				348BF85622D0E2D70057350A /* StoryboardName.swift */,
+				34C938CB22D26ABB00FD74D9 /* Result.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -131,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				348BF7FC22D0BCC50057350A /* AppDelegate.swift */,
+				348BF84622D0D0CE0057350A /* Application.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -147,6 +201,7 @@
 		348BF81322D0BEF60057350A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				348BF84A22D0DA480057350A /* ControllerBuilder */,
 				348BF81422D0BF120057350A /* TranslateService */,
 				348BF81522D0BF1C0057350A /* DataBaseService */,
 			);
@@ -156,6 +211,9 @@
 		348BF81422D0BF120057350A /* TranslateService */ = {
 			isa = PBXGroup;
 			children = (
+				348BF85022D0E1450057350A /* TranslateService.swift */,
+				348BF85222D0E1800057350A /* TranslateServiceProtocol.swift */,
+				34C938C322D1E58700FD74D9 /* DownloadOperation.swift */,
 			);
 			path = TranslateService;
 			sourceTree = "<group>";
@@ -163,6 +221,9 @@
 		348BF81522D0BF1C0057350A /* DataBaseService */ = {
 			isa = PBXGroup;
 			children = (
+				34C938CD22D26B8E00FD74D9 /* DataBaseModel */,
+				348BF85822D0EB330057350A /* DataBase.swift */,
+				348BF85A22D0EB600057350A /* DataBaseProtocol.swift */,
 			);
 			path = DataBaseService;
 			sourceTree = "<group>";
@@ -170,6 +231,10 @@
 		348BF81622D0BF590057350A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				348BF85E22D12EB30057350A /* TranslationResponse.swift */,
+				34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */,
+				34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */,
+				34C938C922D1EAF600FD74D9 /* DictionaryObjectProtocol.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -213,6 +278,7 @@
 		348BF81B22D0BFB30057350A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				34C938D922D2897100FD74D9 /* CellXib */,
 				348BF83B22D0C75F0057350A /* TranslatedListModuleViewController.swift */,
 				348BF83F22D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift */,
 				348BF83D22D0C7700057350A /* TranslatedListModule.storyboard */,
@@ -249,6 +315,7 @@
 		348BF81F22D0BFDA0057350A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				34C938E022D2A5DC00FD74D9 /* TranslatedObject.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -257,8 +324,40 @@
 			isa = PBXGroup;
 			children = (
 				348BF82122D0C05C0057350A /* ModulesCoordinator.swift */,
+				348BF84822D0D2140057350A /* ModulesCoordinatorProtocol.swift */,
 			);
 			path = ModulesCoordinator;
+			sourceTree = "<group>";
+		};
+		348BF84A22D0DA480057350A /* ControllerBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				348BF84B22D0DA6A0057350A /* ControllerBuilder.swift */,
+				348BF84E22D0DA950057350A /* ControllerBuilderProtocol.swift */,
+			);
+			path = ControllerBuilder;
+			sourceTree = "<group>";
+		};
+		34C938CD22D26B8E00FD74D9 /* DataBaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				34C938D122D26D4B00FD74D9 /* Settings+CoreDataClass.swift */,
+				34C938D222D26D4B00FD74D9 /* Settings+CoreDataProperties.swift */,
+				34C938D322D26D4B00FD74D9 /* DictionaryHistory+CoreDataClass.swift */,
+				34C938D422D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift */,
+				34C938CE22D26BA200FD74D9 /* DataStorage.xcdatamodeld */,
+			);
+			path = DataBaseModel;
+			sourceTree = "<group>";
+		};
+		34C938D922D2897100FD74D9 /* CellXib */ = {
+			isa = PBXGroup;
+			children = (
+				34C938DA22D289AA00FD74D9 /* TranslatedListCell.xib */,
+				34C938DC22D28BE600FD74D9 /* TranslatedListCellView.swift */,
+				34C938DE22D28C8D00FD74D9 /* TranslatedListCellModel.swift */,
+			);
+			path = CellXib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34C938DB22D289AA00FD74D9 /* TranslatedListCell.xib in Resources */,
 				348BF80722D0BCC60057350A /* LaunchScreen.storyboard in Resources */,
 				348BF80422D0BCC60057350A /* Assets.xcassets in Resources */,
 				348BF83E22D0C7700057350A /* TranslatedListModule.storyboard in Resources */,
@@ -335,16 +435,40 @@
 			files = (
 				348BF82422D0C1CE0057350A /* TranslateModuleAssembly.swift in Sources */,
 				348BF82B22D0C2280057350A /* TranslateModuleViewController.swift in Sources */,
+				34C938E122D2A5DC00FD74D9 /* TranslatedObject.swift in Sources */,
+				348BF84722D0D0CE0057350A /* Application.swift in Sources */,
 				348BF82922D0C2160057350A /* TranslateModulePresenter.swift in Sources */,
+				34C938D822D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift in Sources */,
+				34C938CA22D1EAF600FD74D9 /* DictionaryObjectProtocol.swift in Sources */,
+				348BF84922D0D2140057350A /* ModulesCoordinatorProtocol.swift in Sources */,
+				34C938CC22D26ABB00FD74D9 /* Result.swift in Sources */,
 				348BF83622D0C7220057350A /* TranslatedListModuleAssembly.swift in Sources */,
 				348BF82622D0C2000057350A /* TranslateModuleInteractor.swift in Sources */,
+				34C938DD22D28BE600FD74D9 /* TranslatedListCellView.swift in Sources */,
+				348BF84F22D0DA950057350A /* ControllerBuilderProtocol.swift in Sources */,
+				348BF85B22D0EB600057350A /* DataBaseProtocol.swift in Sources */,
+				34C938C822D1EA5200FD74D9 /* TranslationLanguages.swift in Sources */,
+				34C938D522D26D4B00FD74D9 /* Settings+CoreDataClass.swift in Sources */,
 				348BF82E22D0C2620057350A /*  TranslateModuleViewControllerProtocol.swift in Sources */,
+				348BF85722D0E2D70057350A /* StoryboardName.swift in Sources */,
+				348BF85922D0EB330057350A /* DataBase.swift in Sources */,
 				348BF83A22D0C7500057350A /* TranslatedListModulePresenter.swift in Sources */,
+				348BF85F22D12EB30057350A /* TranslationResponse.swift in Sources */,
+				34C938C422D1E58800FD74D9 /* DownloadOperation.swift in Sources */,
 				348BF82222D0C05C0057350A /* ModulesCoordinator.swift in Sources */,
 				348BF84422D0C7B80057350A /* TranslatedListModuleInteractorProtocol.swift in Sources */,
+				348BF85522D0E27F0057350A /* UIViewControllerStoryboardID.swift in Sources */,
+				34C938D622D26D4B00FD74D9 /* Settings+CoreDataProperties.swift in Sources */,
+				348BF85122D0E1450057350A /* TranslateService.swift in Sources */,
 				348BF83222D0C2950057350A /* TranslateModuleInteractorProtocol.swift in Sources */,
+				348BF85322D0E1800057350A /* TranslateServiceProtocol.swift in Sources */,
+				348BF84C22D0DA6A0057350A /* ControllerBuilder.swift in Sources */,
+				34C938C622D1E9B100FD74D9 /* DictionaryObject.swift in Sources */,
+				34C938DF22D28C8D00FD74D9 /* TranslatedListCellModel.swift in Sources */,
+				34C938D722D26D4B00FD74D9 /* DictionaryHistory+CoreDataClass.swift in Sources */,
 				348BF84222D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift in Sources */,
 				348BF7FD22D0BCC50057350A /* AppDelegate.swift in Sources */,
+				34C938D022D26BA200FD74D9 /* DataStorage.xcdatamodeld in Sources */,
 				348BF84022D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift in Sources */,
 				348BF83822D0C73C0057350A /* TranslatedListModuleInteractor.swift in Sources */,
 				348BF83C22D0C75F0057350A /* TranslatedListModuleViewController.swift in Sources */,
@@ -540,6 +664,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		34C938CE22D26BA200FD74D9 /* DataStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				34C938CF22D26BA200FD74D9 /* DataStorage.xcdatamodel */,
+			);
+			currentVersion = 34C938CF22D26BA200FD74D9 /* DataStorage.xcdatamodel */;
+			path = DataStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 348BF7F122D0BCC50057350A /* Project object */;
 }

@@ -10,10 +10,12 @@ import Foundation
 
 
 protocol TranslateModuleViewOutputProtocol: class {
-  
+  func endEditing(dictionaryObject: DictionaryObjectProtocol)
+  func viewDidLoad()
 }
 
 protocol TranslateModuleViewInputProtocol: class {
   var output: TranslateModuleViewOutputProtocol {get set}
+  func show(dictionaryObject: DictionaryObjectProtocol)
 }
 
