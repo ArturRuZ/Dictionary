@@ -47,7 +47,7 @@ extension TranslateService: TranslateServiceProtocol {
     operationQueue.cancelAllOperations()
     operationQueue.addOperation (
       DownloadOperation(url: url, completion: { [weak self] result in
-        guard let self = self else { return }
+        guard let self = self else {return}
         if let error = result.error {
           completion(Result(error: error))
         } else {

@@ -27,14 +27,14 @@ final class TranslateModuleViewController: UIViewController {
   private lazy var selectFromLanguageButton: UIButton = {
     let selectFromLanguageButton = UIButton(type: .system)
     selectFromLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
-    selectFromLanguageButton.addTarget(self, action: #selector(showChangeLanguageFromWindow), for: .touchUpInside)
+    selectFromLanguageButton.addTarget(self, action: #selector(showChangeLanguageWindow), for: .touchUpInside)
     
     return selectFromLanguageButton
   }()
   private lazy var selectToLanguageButton: UIButton = {
     let selectToLanguageButton = UIButton(type: .system)
     selectToLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
-    selectToLanguageButton.addTarget(self, action: #selector(showChangeLanguageToWindow), for: .touchUpInside)
+    selectToLanguageButton.addTarget(self, action: #selector(showChangeLanguageWindow), for: .touchUpInside)
     return selectToLanguageButton
   }()
   
@@ -46,7 +46,7 @@ final class TranslateModuleViewController: UIViewController {
     translatedText.delegate = self
     configureNavigationBar()
   }
- 
+  
   
   private func configureNavigationBar() {
     self.navigationController?.navigationBar.isTranslucent = true
@@ -62,50 +62,30 @@ final class TranslateModuleViewController: UIViewController {
     guard let object = self.dictionaryObject else {return}
     textForTranslate.text = object.textForTranslate
     translatedText.text = object.translatedText
-    selectFromLanguageButton.setTitle(languagesDictionary[(object.languageFrom.rawValue)], for: .normal)
-    selectToLanguageButton.setTitle(languagesDictionary[(object.languageTo.rawValue)], for: .normal)
+    selectFromLanguageButton.setTitle(languagesDictionary[object.languageFrom], for: .normal)
+    selectToLanguageButton.setTitle(languagesDictionary[object.languageTo], for: .normal)
   }
-  @objc func showChangeLanguageFromWindow(_ sender: UIButton){
-    let alert = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Русский", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.ru
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "English", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.en
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "French", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.fr
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Spanish", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.es
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true)
-  }
-  @objc func showChangeLanguageToWindow(_ sender: UIButton){
-    let alert = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Русский", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.ru
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "English", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.en
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "French", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.fr
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Spanish", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.es
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true)
+  
+  @objc func showChangeLanguageWindow(_ sender: UIButton) {
+    var selectLanguage: TranslationLanguages?
+    let alertController = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
+    for (key, value) in languagesDictionary {
+      alertController.addAction(UIAlertAction(title: "\(value)", style: .default, handler: { [weak self] _ in
+        guard let self = self else {return}
+        selectLanguage = key
+        guard let selectedLanguage = selectLanguage else {return}
+        guard self.dictionaryObject != nil else {return}
+        switch sender {
+        case self.selectFromLanguageButton: self.dictionaryObject?.languageFrom = selectedLanguage
+        case self.selectToLanguageButton: self.dictionaryObject?.languageTo = selectedLanguage
+        default:
+          break
+        }
+        self.updateUI()
+      }))
+    }
+    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    self.present(alertController, animated: true)
   }
   
   @objc func changeLanguageDirection(_ sender: UIButton) {

@@ -70,7 +70,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
     self.translateService.translateData(fromURL: url, parseInto: TranslationResponse.self, completion: {[weak self] result in
       guard let self = self else {return}
       if let error = result.error {print (error)} else {
-        guard let removedLastSpace = result.success?.result.translated?.dropLast() else { return }
+        guard let removedLastSpace = result.success?.result.translated?.dropLast() else {return}
         data.translatedText = String(removedLastSpace)
         data.time = self.convertTime(time: result.success?.timestamp ?? 0)
         self.output.prepared(dictionaryObject: data)
