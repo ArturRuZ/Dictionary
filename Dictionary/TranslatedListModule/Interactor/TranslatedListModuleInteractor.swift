@@ -13,8 +13,8 @@ final class TranslatedListModuleInteractor {
   
   // MARK: - Properties
   
+  weak var interactorOutput: TranslatedListModuleInteractorOutputProtocol!
   private let dataBase: DataBaseProtocol
-  var interactorOutput: TranslatedListModuleInteractorOutputProtocol!
   
   // MARK: - Initialization
   

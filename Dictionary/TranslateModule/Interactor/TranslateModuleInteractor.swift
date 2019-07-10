@@ -13,11 +13,9 @@ final class TranslateModuleInteractor {
   
   // MARK: - Properties
   
-  var interactorOutput: TranslateModuleInteractorOutputProtocol!
+  weak var interactorOutput: TranslateModuleInteractorOutputProtocol!
   private let translateService: TranslateServiceProtocol
   private let dataBase: DataBaseProtocol
-  private let defaultForTranslateText = "Text for translate"
-  private let defaultTranslatedText = "Translated text"
   
   // MARK: - Initialization
   
@@ -44,7 +42,6 @@ final class TranslateModuleInteractor {
     guard let convertedDate = dateFormatter.date(from: dateString) else {return nil}
     return convertedDate
   }
-  
 }
 
 // MARK: - TranslateModuleInteractorInputProtocol implementation
@@ -60,8 +57,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   }
   
   func prepareDictionaryObject() {
-    
-    let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru, textForTranslate: defaultForTranslateText, translatedText: defaultTranslatedText, time: nil)
+    let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
     output.prepared(dictionaryObject: dictionaryObject)
   }
   

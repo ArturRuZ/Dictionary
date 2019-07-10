@@ -16,4 +16,5 @@ protocol DictionaryObjectProtocol: class {
   var translatedText: String {get set}
   var time: Date? {get set}
   func changeLanguageDirection()
+  func isDefault() -> Bool 
 }
