@@ -28,7 +28,6 @@ final class TranslateModuleViewController: UIViewController {
     let selectFromLanguageButton = UIButton(type: .system)
     selectFromLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
     selectFromLanguageButton.addTarget(self, action: #selector(showChangeLanguageWindow), for: .touchUpInside)
-    
     return selectFromLanguageButton
   }()
   private lazy var selectToLanguageButton: UIButton = {
@@ -38,6 +37,7 @@ final class TranslateModuleViewController: UIViewController {
     return selectToLanguageButton
   }()
   
+  // MARK: - BuildIn methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,6 +47,7 @@ final class TranslateModuleViewController: UIViewController {
     configureNavigationBar()
   }
   
+  // MARK: - Private methods
   
   private func configureNavigationBar() {
     self.navigationController?.navigationBar.isTranslucent = true
@@ -66,6 +67,8 @@ final class TranslateModuleViewController: UIViewController {
     selectToLanguageButton.setTitle(languagesDictionary[object.languageTo], for: .normal)
   }
   
+  // MARK: - @objc methods
+  
   @objc func showChangeLanguageWindow(_ sender: UIButton) {
     var selectLanguage: TranslationLanguages?
     let alertController = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
@@ -82,6 +85,7 @@ final class TranslateModuleViewController: UIViewController {
           break
         }
         self.updateUI()
+        self.textViewDidEndEditing(self.textForTranslate)
       }))
     }
     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -92,15 +96,13 @@ final class TranslateModuleViewController: UIViewController {
     guard  self.dictionaryObject != nil else {return}
     self.dictionaryObject?.changeLanguageDirection()
     self.updateUI()
+    self.textViewDidEndEditing(self.textForTranslate)
   }
 }
 
 // MARK: - TranslateModuleViewInputProtocol implementation
 
 extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
-  
-  // MARK: - TranslateModuleViewInputProtocol properties
-  
   var output: TranslateModuleViewOutputProtocol {
     get {
       return viewOutput
@@ -114,7 +116,7 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
   
   func show(dictionaryObject: DictionaryObjectProtocol) {
     self.dictionaryObject = dictionaryObject
-    updateUI()
+    self.updateUI()
   }
 }
 
@@ -128,7 +130,7 @@ extension TranslateModuleViewController: UITextViewDelegate {
   }
   
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if(text == "\n") {
+    if (text == "\n") {
       textView.resignFirstResponder()
       return true
     }
@@ -138,7 +140,9 @@ extension TranslateModuleViewController: UITextViewDelegate {
   func textViewDidEndEditing(_ textView: UITextView) {
     guard let object = self.dictionaryObject else {return}
     object.textForTranslate = textView.text
-    output.endEditing(dictionaryObject: object)
+    if !(self.dictionaryObject?.isDefault() ?? false) {
+      output.endEditing(dictionaryObject: object)
+    }
   }
 }
 

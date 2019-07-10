@@ -57,8 +57,14 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   }
   
   func prepareDictionaryObject() {
-    let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
-    output.prepared(dictionaryObject: dictionaryObject)
+    dataBase.loadData(with: .all, inObjects: .settings) {(result: Result<[Settings]>) in
+      if let error = result.error {print (error)}
+      //guard let settings = result.success?[0] else {return}
+      DispatchQueue.main.async {
+        let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
+        self.output.prepared(dictionaryObject: dictionaryObject)
+      }
+    }
   }
   
   func translate(data: DictionaryObjectProtocol) {
