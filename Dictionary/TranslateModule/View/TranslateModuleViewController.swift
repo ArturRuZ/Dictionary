@@ -108,7 +108,6 @@ final class TranslateModuleViewController: UIViewController {
     self.present(alert, animated: true)
   }
   
-  
   @objc func changeLanguageDirection(_ sender: UIButton) {
     guard  self.dictionaryObject != nil else {return}
     self.dictionaryObject?.changeLanguageDirection()

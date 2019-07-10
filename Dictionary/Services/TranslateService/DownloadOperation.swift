@@ -41,7 +41,7 @@ final class  DownloadOperation: Operation {
       } else  {self.completion(nil, ErrorsList.translateIsCanceled)}
       semaphore.signal()
     })
-    task!.resume()
+    task?.resume()
     semaphore.wait()
   }
   
