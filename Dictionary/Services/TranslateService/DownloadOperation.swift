@@ -15,11 +15,11 @@ final class  DownloadOperation: Operation {
   
   private var task: URLSessionDataTask?
   private var url: URL
-  private let completion: (Data?, Error?) -> Void
+  private let completion: (Result<Data>) -> Void
   
   // MARK: - Initialization
   
-  init(url: URL, completion: @escaping (Data?, Error?) -> Void ) {
+  init(url: URL, completion: @escaping (Result<Data>) -> Void ) {
     self.url = url
     self.completion = completion
     super.init()
@@ -29,24 +29,26 @@ final class  DownloadOperation: Operation {
   
   override func main() {
     let semaphore = DispatchSemaphore(value: 0)
-    task = URLSession.shared.dataTask(with: url, completionHandler: { (data,response,error) in
-      if !self.isCancelled {
-        if let error = error {
-          self.completion(nil, error)
-          return
-        }
-        if data != nil {
-          self.completion(data!, nil)
-        } else {self.completion(nil, ErrorsList.errorData)}
-      } else  {self.completion(nil, ErrorsList.translateIsCanceled)}
+    self.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+      if self.isCancelled {
+        self.completion(Result(error: ErrorsList.translateIsCanceled))
+      }
+      if let error = error {
+        self.completion(Result(error: error))
+      }
+      guard let data = data else {
+        self.completion(Result(error: ErrorsList.errorData))
+        return
+      }
+      self.completion(Result(value: data))
       semaphore.signal()
     })
-    task?.resume()
+    self.task?.resume()
     semaphore.wait()
   }
   
   override func cancel() {
     super.cancel()
-    task?.cancel()
+    self.task?.cancel()
   }
 }

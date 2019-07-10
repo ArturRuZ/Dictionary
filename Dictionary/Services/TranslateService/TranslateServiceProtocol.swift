@@ -20,6 +20,6 @@ enum ErrorsList: Error {
 
 
 protocol TranslateServiceProtocol: class {
-  func translateData<T>(fromURL: URL?, parseInto container: T.Type,completion: @escaping (T?, Error?) -> Void) where T : Codable
+  func translateData<T>(fromURL: URL?, parseInto container: T.Type,completion: @escaping (Result<T>) -> Void) where T: Codable
 }
 

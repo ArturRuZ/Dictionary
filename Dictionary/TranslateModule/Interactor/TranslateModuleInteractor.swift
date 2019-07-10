@@ -67,12 +67,12 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   
   func translate(data: DictionaryObjectProtocol) {
     let url = self.buildUrlToTranslate(from: data)
-    self.translateService.translateData(fromURL: url, parseInto: TranslationResponse.self, completion: {[weak self](result, error) in
+    self.translateService.translateData(fromURL: url, parseInto: TranslationResponse.self, completion: {[weak self] result in
       guard let self = self else {return}
-      if let error = error {print (error)} else {
-        guard let removedLastSpace = result?.result.translated?.dropLast() else {return}
+      if let error = result.error {print (error)} else {
+        guard let removedLastSpace = result.success?.result.translated?.dropLast() else { return }
         data.translatedText = String(removedLastSpace)
-        data.time = self.convertTime(time: result?.timestamp ?? 0)
+        data.time = self.convertTime(time: result.success?.timestamp ?? 0)
         self.output.prepared(dictionaryObject: data)
         self.dataBase.saveObject(parametrs: .tanslated(object: data)) { result in
           if let error = result.error {print (error)}
