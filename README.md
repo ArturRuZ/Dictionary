@@ -8,4 +8,5 @@ Dictionary with multillect API. VIPER.
 5. all classes refactoring with SOLID
 6. fix formatting code, to do code more readable
 7. UI refactoring
+8. add tests
 
