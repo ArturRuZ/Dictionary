@@ -6,7 +6,7 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 final class TranslateModuleInteractor {
@@ -16,6 +16,7 @@ final class TranslateModuleInteractor {
   weak var interactorOutput: TranslateModuleInteractorOutputProtocol!
   private let translateService: TranslateServiceProtocol
   private let dataBase: DataBaseProtocol
+  private var currentDictionaryObject: DictionaryObjectProtocol?
   
   // MARK: - Initialization
   
@@ -30,9 +31,9 @@ final class TranslateModuleInteractor {
     let correctTextForTranslate = from.textForTranslate.replacingOccurrences(of: " ", with: "%20")
     guard let encodedUrl = correctTextForTranslate.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return nil}
     let url = "https://api.multillect.com/translate/json/1.0/1165?method=translate/api/translate&from=\(from.languageFrom)&to=\(from.languageTo)&text=\(encodedUrl)&sig=ac0089a730c066aea5a03168bbac6fd7"
+   print (url)
     return URL(string: url)
   }
-  
   private func convertTime(time: Int)-> Date? {
     let date = Date(timeIntervalSince1970: TimeInterval(time) )
     let dateFormatter = DateFormatter()
@@ -60,14 +61,16 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
     dataBase.loadData(with: .all, inObjects: .settings) {(result: Result<[Settings]>) in
       if let error = result.error {print (error)}
       //guard let settings = result.success?[0] else {return}
+      let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
+      self.currentDictionaryObject = dictionaryObject
       DispatchQueue.main.async {
-        let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
         self.output.prepared(dictionaryObject: dictionaryObject)
       }
     }
   }
-  
-  func translate(data: DictionaryObjectProtocol) {
+  func translate(text: String) {
+    guard let data = currentDictionaryObject else {return}
+    data.textForTranslate = text
     let url = self.buildUrlToTranslate(from: data)
     self.translateService.translateData(fromURL: url, parseInto: TranslationResponse.self, completion: {[weak self] result in
       guard let self = self else {return}
@@ -85,5 +88,31 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
       }
       }
     )}
+  func changeLanguageDirection() {
+    guard let object = currentDictionaryObject else {return}
+    object.changeLanguageDirection()
+    self.output.prepared(dictionaryObject: object)
+  }
+  func prepareChangeLanguageWindow(forTag: Int) {
+        var selectLanguage: TranslationLanguages?
+        let alertController = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
+    for (key, value) in currentDictionaryObject?.getSupportedLanguages() ?? [:] {
+          alertController.addAction(UIAlertAction(title: "\(value)", style: .default, handler: { [weak self] _ in
+            guard let self = self else {return}
+            selectLanguage = key
+            guard let selectedLanguage = selectLanguage else {return}
+            guard self.currentDictionaryObject != nil else {return}
+            switch forTag {
+            case 1: self.currentDictionaryObject?.languageFrom = selectedLanguage
+            case 2: self.currentDictionaryObject?.languageTo = selectedLanguage
+            default:
+              break
+            }
+            self.interactorOutput.prepared(dictionaryObject: self.currentDictionaryObject!)
+          }))
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        interactorOutput.preparedChangeLanguage(window: alertController)
+  }
 }
 

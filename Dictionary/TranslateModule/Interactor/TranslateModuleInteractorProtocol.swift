@@ -6,15 +6,18 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 protocol  TranslateModuleInteractorInputProtocol: class {
   var output: TranslateModuleInteractorOutputProtocol {get set}
-  func translate(data: DictionaryObjectProtocol)
+  func translate(text: String)
   func prepareDictionaryObject()
+  func changeLanguageDirection()
+  func prepareChangeLanguageWindow(forTag: Int)
 }
 
 protocol  TranslateModuleInteractorOutputProtocol: class {
   func prepared(dictionaryObject: DictionaryObjectProtocol)
+  func preparedChangeLanguage(window: UIAlertController)
 }
