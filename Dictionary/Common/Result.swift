@@ -12,6 +12,14 @@ enum Result<Value> {
   case success(Value)
   case error(Error)
   
+  init(value: Value) {
+    self = .success(value)
+  }
+  
+  init(error: Error) {
+    self = .error(error)
+  }
+  
   var success: Value? {
     switch self {
     case .success(let value): return value

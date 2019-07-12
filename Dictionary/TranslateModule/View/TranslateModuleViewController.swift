@@ -16,7 +16,6 @@ final class TranslateModuleViewController: UIViewController {
   @IBOutlet weak var textForTranslate: UITextView!
   @IBOutlet weak var translatedText: UITextView!
   private var viewOutput: TranslateModuleViewOutputProtocol!
-  private var dictionaryObject: DictionaryObjectProtocol?
   private lazy var changeLanguageDirectionButton: UIButton = {
     let changeLanguageDirectionButton = UIButton(type: .system)
     changeLanguageDirectionButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
@@ -27,17 +26,19 @@ final class TranslateModuleViewController: UIViewController {
   private lazy var selectFromLanguageButton: UIButton = {
     let selectFromLanguageButton = UIButton(type: .system)
     selectFromLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
-    selectFromLanguageButton.addTarget(self, action: #selector(showChangeLanguageFromWindow), for: .touchUpInside)
-    
+    selectFromLanguageButton.addTarget(self, action: #selector(showChangeLanguageWindow), for: .touchUpInside)
+    selectFromLanguageButton.tag = 1
     return selectFromLanguageButton
   }()
   private lazy var selectToLanguageButton: UIButton = {
     let selectToLanguageButton = UIButton(type: .system)
     selectToLanguageButton.frame = CGRect(x: 0, y: 0, width: 60, height: 34)
-    selectToLanguageButton.addTarget(self, action: #selector(showChangeLanguageToWindow), for: .touchUpInside)
+    selectToLanguageButton.addTarget(self, action: #selector(showChangeLanguageWindow), for: .touchUpInside)
+    selectToLanguageButton.tag = 2
     return selectToLanguageButton
   }()
   
+  // MARK: - BuildIn methods
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,7 +47,8 @@ final class TranslateModuleViewController: UIViewController {
     translatedText.delegate = self
     configureNavigationBar()
   }
- 
+  
+  // MARK: - Private methods
   
   private func configureNavigationBar() {
     self.navigationController?.navigationBar.isTranslucent = true
@@ -58,70 +60,20 @@ final class TranslateModuleViewController: UIViewController {
     self.navigationItem.leftBarButtonItems = [leftSpacer, UIBarButtonItem(customView: selectFromLanguageButton)]
     self.navigationItem.rightBarButtonItems = [rightSpacer, UIBarButtonItem(customView: selectToLanguageButton)]
   }
-  private func updateUI() {
-    guard let object = self.dictionaryObject else {return}
-    textForTranslate.text = object.textForTranslate
-    translatedText.text = object.translatedText
-    selectFromLanguageButton.setTitle(languagesDictionary[(object.languageFrom.rawValue)], for: .normal)
-    selectToLanguageButton.setTitle(languagesDictionary[(object.languageTo.rawValue)], for: .normal)
-  }
-  @objc func showChangeLanguageFromWindow(_ sender: UIButton){
-    let alert = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Русский", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.ru
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "English", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.en
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "French", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.fr
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Spanish", style: .default, handler: { action in
-      self.dictionaryObject?.languageFrom = TranslationLanguages.es
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true)
-  }
-  @objc func showChangeLanguageToWindow(_ sender: UIButton){
-    let alert = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Русский", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.ru
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "English", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.en
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "French", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.fr
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Spanish", style: .default, handler: { action in
-      self.dictionaryObject?.languageTo = TranslationLanguages.es
-      self.updateUI()
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true)
-  }
   
+  // MARK: - @objc methods
   
+  @objc func showChangeLanguageWindow( _ sender: UIButton) {
+    output.changelanguageButtonPressed(withTag: sender.tag)
+  }
   @objc func changeLanguageDirection(_ sender: UIButton) {
-    guard  self.dictionaryObject != nil else {return}
-    self.dictionaryObject?.changeLanguageDirection()
-    updateUI()
+    self.output.changelanguageDitrectionButtonPressed()
   }
 }
 
 // MARK: - TranslateModuleViewInputProtocol implementation
 
 extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
-  
-  // MARK: - TranslateModuleViewInputProtocol properties
-  
   var output: TranslateModuleViewOutputProtocol {
     get {
       return viewOutput
@@ -130,36 +82,34 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
       viewOutput = newValue
     }
   }
-  
-  // MARK: - TranslateModuleViewInputProtocol methods
-  
   func show(dictionaryObject: DictionaryObjectProtocol) {
-    self.dictionaryObject = dictionaryObject
-    updateUI()
+    textForTranslate.text = dictionaryObject.textForTranslate
+    translatedText.text = dictionaryObject.translatedText
+    let supportedLanguages = dictionaryObject.getSupportedLanguages()
+    selectFromLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageFrom], for: .normal)
+    selectToLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageTo], for: .normal)
+  }
+  func showChangeLanguage(window: UIAlertController) {
+    self.present(window, animated: true)
   }
 }
 
+// MARK: - UITextViewDelegate implementation
+
 extension TranslateModuleViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-    if self.dictionaryObject?.time == nil {
-      textForTranslate.text = ""
-      translatedText.text = ""
-    }
+    textForTranslate.text = ""
+    translatedText.text = ""
     return true
   }
-  
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if(text == "\n") {
+    if (text == "\n") {
       textView.resignFirstResponder()
       return true
     }
     return true
   }
-  
   func textViewDidEndEditing(_ textView: UITextView) {
-    guard let object = self.dictionaryObject else {return}
-    object.textForTranslate = textView.text
-    output.endEditing(dictionaryObject: object)
+    output.endEditing(text: textView.text)
   }
 }
-

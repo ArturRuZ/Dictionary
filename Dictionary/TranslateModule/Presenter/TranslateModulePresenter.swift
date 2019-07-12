@@ -6,7 +6,7 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 final class TranslateModulePresenter {
@@ -59,15 +59,23 @@ extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
   func viewDidLoad() {
    interactor.prepareDictionaryObject()
   }
-  
-  func endEditing(dictionaryObject: DictionaryObjectProtocol) {
-    interactor.translate(data: dictionaryObject)
+  func endEditing(text: String) {
+    interactor.translate(text: text)
+  }
+  func changelanguageButtonPressed(withTag: Int) {
+    interactor.prepareChangeLanguageWindow(forTag: withTag)
+  }
+  func changelanguageDitrectionButtonPressed() {
+    interactor.changeLanguageDirection()
   }
 }
 
 // MARK: - TranslateModuleInteractorOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
+  func preparedChangeLanguage(window: UIAlertController) {
+    view.showChangeLanguage(window: window)
+  }
   func prepared(dictionaryObject: DictionaryObjectProtocol) {
     view.show(dictionaryObject: dictionaryObject)
   }

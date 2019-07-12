@@ -6,16 +6,19 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 protocol TranslateModuleViewOutputProtocol: class {
-  func endEditing(dictionaryObject: DictionaryObjectProtocol)
+  func endEditing(text: String)
   func viewDidLoad()
+  func changelanguageButtonPressed(withTag: Int)
+  func changelanguageDitrectionButtonPressed()
 }
 
 protocol TranslateModuleViewInputProtocol: class {
   var output: TranslateModuleViewOutputProtocol {get set}
   func show(dictionaryObject: DictionaryObjectProtocol)
+  func showChangeLanguage(window: UIAlertController)
 }
 

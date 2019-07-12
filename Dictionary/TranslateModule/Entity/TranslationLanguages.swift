@@ -15,6 +15,3 @@ enum TranslationLanguages: String {
   case fr = "fr"
   case es = "es"
 }
-
-
-let languagesDictionary: [String: String] = ["ru": "Русский", "en": "English", "fr": "French","es": "Spanish" ]

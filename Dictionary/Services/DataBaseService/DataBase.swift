@@ -35,8 +35,8 @@ final class DataBase: NSObject {
   }
   private func getEntityDescription(fromEntity: ObjectsList, context: NSManagedObjectContext, completion: @escaping (Result<NSEntityDescription>) -> Void) {
     guard let entityDescription = NSEntityDescription.entity(forEntityName: "\(fromEntity.rawValue)", in: context)
-      else {return completion(Result.error(ErrorsList.couldntInitEntity(": \(fromEntity.rawValue)")))}
-    return completion(Result.success(entityDescription))
+      else {return completion(Result(error: ErrorsList.couldntInitEntity(": \(fromEntity.rawValue)")))}
+    return completion(Result(value: entityDescription))
   }
   
   private func setupFetchRequest(inEntity: ObjectsList, byAttribute: String = "", forValue: String = "") -> NSFetchRequest<NSFetchRequestResult> {
@@ -63,13 +63,13 @@ extension DataBase: DataBaseProtocol {
     switch parametrs {
     case .tanslated (let object):
       self.save(object: object) { result in
-        guard let error = result.error else {return completion(Result.success(()))}
-        completion(Result.error(error))
+        guard let error = result.error else {return completion(Result(value: (())))}
+        completion(Result(error: error))
       }
     case .lastUsedLanguage(let languageFrom, let languageTo):
       self.save(languageFrom: languageFrom, languageTo: languageTo) { result in
-        guard let error = result.error else {return completion(Result.success(()))}
-        completion(Result.error(error))
+        guard let error = result.error else {return completion(Result(value: (())))}
+        completion(Result(error: error))
       }
     }
   }
@@ -80,9 +80,9 @@ extension DataBase: DataBaseProtocol {
     self.persistentContainer.performBackgroundTask {context in
       do {
         let objects: [T] = try self.findObjects(with: with,inObjects: inObjects, inContext: context)
-        completion(Result.success(objects))
+        completion(Result(value: objects))
       } catch let error {
-        completion(Result.error(error))
+        completion(Result(error: error))
       }
     }
   }
@@ -95,9 +95,9 @@ extension DataBase: DataBaseProtocol {
         let objects: [NSManagedObject] = try self.findObjects(with: with, inObjects: inObjects, inContext: context)
         objects.forEach {context.delete($0)}
         try self.saveIn(context: context)
-        completion(Result.success(()))
+        completion(Result(value: (())))
       } catch let error {
-        completion(Result.error(error))
+        completion(Result(error: error))
       }
     }
   }
@@ -115,11 +115,11 @@ extension DataBase: DataBaseProtocol {
           dictionaryHistory.time = object.time as NSDate?
           do {
             try self.saveIn(context: context)
-            completion(Result.success(()))
-          } catch let error {completion(Result.error(error))}
+            completion(Result(value: (())))
+          } catch let error {completion(Result(error: error))}
           return
         }
-        completion(Result.error(error))
+        completion(Result(error: error))
       }
     }
   }
@@ -135,11 +135,11 @@ extension DataBase: DataBaseProtocol {
           newSettings.lastLanguageToTranslate = languageTo
           do {
             try self.saveIn(context: context)
-            completion(Result.success(()))
-          } catch let error {completion(Result.error(error))}
+            completion(Result(value: (())))
+          } catch let error {completion(Result(error: error))}
           return
         }
-        completion(Result.error(error))
+        completion(Result(error: error))
       }
     }
   }
