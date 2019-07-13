@@ -12,5 +12,5 @@ import Foundation
 protocol TranslatedListCellModel {
   var textForTranslate: String {get}
   var translatedText: String {get}
-  var time: Date {get set}
+  var time: NSDate {get set}
 }

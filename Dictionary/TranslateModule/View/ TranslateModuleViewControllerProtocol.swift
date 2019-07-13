@@ -19,6 +19,6 @@ protocol TranslateModuleViewOutputProtocol: class {
 protocol TranslateModuleViewInputProtocol: class {
   var output: TranslateModuleViewOutputProtocol {get set}
   func show(dictionaryObject: DictionaryObjectProtocol)
-  func showChangeLanguage(window: UIAlertController)
+  func showAlert(window: UIAlertController)
 }
 

@@ -41,12 +41,18 @@ final class DataBase: NSObject {
   
   private func setupFetchRequest(inEntity: ObjectsList, byAttribute: String = "", forValue: String = "") -> NSFetchRequest<NSFetchRequestResult> {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(inEntity.rawValue)")
-    if byAttribute != "" && forValue != "" {
+    switch (byAttribute, forValue) {
+    case ("", ""):
+      break
+    default:
       fetchRequest.predicate = NSPredicate(format: "\(byAttribute) = %@", "\(forValue)")
     }
-    if inEntity.rawValue == ObjectsList.dictionaryHistory.rawValue {
-      let sort = NSSortDescriptor(key: "time", ascending: true)
-      fetchRequest.sortDescriptors = [sort]
+    switch inEntity.rawValue {
+    case ObjectsList.dictionaryHistory.rawValue:
+      let sortByDate = NSSortDescriptor(key: "time", ascending: true)
+      fetchRequest.sortDescriptors = [sortByDate ]
+    default:
+      break
     }
     fetchRequest.returnsObjectsAsFaults = false
     return fetchRequest
@@ -76,10 +82,10 @@ extension DataBase: DataBaseProtocol {
   
   // MARK: - loadObject DataBaseProtocol func
   
-  func loadData<T>(with: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void) {
+  func loadData<T>(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       do {
-        let objects: [T] = try self.findObjects(with: with,inObjects: inObjects, inContext: context)
+        let objects: [T] = try self.findObjects(with: parametrs, inObjects: inObjects, inContext: context)
         completion(Result(value: objects))
       } catch let error {
         completion(Result(error: error))
@@ -89,10 +95,10 @@ extension DataBase: DataBaseProtocol {
   
   // MARK: - deleteObject DataBaseProtocol func
   
-  func delete(with: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void) {
+  func delete(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       do {
-        let objects: [NSManagedObject] = try self.findObjects(with: with, inObjects: inObjects, inContext: context)
+        let objects: [NSManagedObject] = try self.findObjects(with: parametrs, inObjects: inObjects, inContext: context)
         objects.forEach {context.delete($0)}
         try self.saveIn(context: context)
         completion(Result(value: (())))

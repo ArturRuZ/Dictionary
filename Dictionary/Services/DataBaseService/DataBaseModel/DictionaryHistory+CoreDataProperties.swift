@@ -2,7 +2,7 @@
 //  DictionaryHistory+CoreDataProperties.swift
 //  Dictionary
 //
-//  Created by Артур on 07/07/2019.
+//  Created by Артур on 13/07/2019.
 //  Copyright © 2019 Артур. All rights reserved.
 //
 //
@@ -18,7 +18,7 @@ extension DictionaryHistory {
     }
 
     @NSManaged public var textForTranslate: String?
-    @NSManaged public var translatedText: String?
     @NSManaged public var time: NSDate?
+    @NSManaged public var translatedText: String?
 
 }

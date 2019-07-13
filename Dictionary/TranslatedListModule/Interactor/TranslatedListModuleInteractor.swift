@@ -35,16 +35,11 @@ extension TranslatedListModuleInteractor: TranslatedListModuleInteractorInputPro
     }
   }
   func downloadDictionaryHistory(with: ObjectSearchParametrs) {
-    dataBase.loadData(with: with, inObjects: .dictionaryHistory) {(result: Result<[DictionaryHistory]>) in
+    dataBase.loadData(with: with, inObjects: .dictionaryHistory) {(result: Result<[TranslatedObject]>) in
       if let error = result.error {print (error)}
-      guard let objects = result.success else {return}
-      var translatedWords: [TranslatedListCellModel] = []
-      for object in objects {
-        let translatedWord = TranslatedObject(textForTranslate: object.textForTranslate!, translatedText: object.translatedText!, time: object.time! as Date)
-        translatedWords.append(translatedWord)
-      }
+      guard let dictionaryHistory = result.success else {return}
       DispatchQueue.main.async {
-        self.interactorOutput.prepared(dictionary: translatedWords)
+        self.interactorOutput.prepared(dictionary: dictionaryHistory)
       }
     }
   }

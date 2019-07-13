@@ -12,10 +12,17 @@ final class ControllerBuilder {
   
   // MARK: - Private properties
   
-  private let translateService: TranslateServiceProtocol = TranslateService()
-  private let dataBase: DataBaseProtocol = DataBase()
+  private let translateService: TranslateServiceProtocol
+  private let dataBase: DataBaseProtocol
   private weak var modulesCoordinator: ModulesCoordinatorProtocol!
   private var translateModulePresenter: TranslateModulePresenterInputProtocol!
+  
+  //MARK: - Initialization
+  init(translateService: TranslateServiceProtocol, dataBase: DataBaseProtocol) {
+    self.translateService = translateService
+    self.dataBase = dataBase
+  }
+  
   
   // MARK: - Private methods
   

@@ -10,11 +10,8 @@ import Foundation
 
 
 struct TranslationResponse: Codable {
-  var result: Results
-  var error: String?
-  var timestamp: Int
+  var code: Int
+  var text: [String]
 }
 
-struct Results: Codable {
-  var translated: String?
-}
+

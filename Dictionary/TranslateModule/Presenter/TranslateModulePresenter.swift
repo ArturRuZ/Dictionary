@@ -11,12 +11,11 @@ import UIKit
 
 final class TranslateModulePresenter {
   
-    // MARK: - properties
+// MARK: - properties
   
   private weak var presenterDelegate : TranslateModulePresenterDelegateProtocol!
   private weak var view: TranslateModuleViewInputProtocol!
   private var interactor: TranslateModuleInteractorInputProtocol!
-  
 }
 
 // MARK: - TranslateModulePresenterInputProtocol implementation
@@ -30,7 +29,6 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       presenterDelegate = newValue
     }
   }
-  
   var input: TranslateModuleInteractorInputProtocol {
     get {
       return interactor
@@ -39,7 +37,6 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       interactor = newValue
     }
   }
-  
   var output: TranslateModuleViewInputProtocol {
     get {
       return view
@@ -57,13 +54,13 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
 
 extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
   func viewDidLoad() {
-   interactor.prepareDictionaryObject()
+    interactor.createDictionaryObject()
   }
   func endEditing(text: String) {
     interactor.translate(text: text)
   }
   func changelanguageButtonPressed(withTag: Int) {
-    interactor.prepareChangeLanguageWindow(forTag: withTag)
+    interactor.createChangeLanguageWindow(forTag: withTag)
   }
   func changelanguageDitrectionButtonPressed() {
     interactor.changeLanguageDirection()
@@ -73,10 +70,10 @@ extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
 // MARK: - TranslateModuleInteractorOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
-  func preparedChangeLanguage(window: UIAlertController) {
-    view.showChangeLanguage(window: window)
+  func prepareWindow(alert: UIAlertController) {
+    view.showAlert(window: alert)
   }
-  func prepared(dictionaryObject: DictionaryObjectProtocol) {
+  func prepare(dictionaryObject: DictionaryObjectProtocol) {
     view.show(dictionaryObject: dictionaryObject)
   }
 }

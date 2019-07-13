@@ -38,6 +38,9 @@
 		348BF85922D0EB330057350A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85822D0EB330057350A /* DataBase.swift */; };
 		348BF85B22D0EB600057350A /* DataBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85A22D0EB600057350A /* DataBaseProtocol.swift */; };
 		348BF85F22D12EB30057350A /* TranslationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85E22D12EB30057350A /* TranslationResponse.swift */; };
+		34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */; };
+		34A8359022DA2CCD0070C05D /* DataBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */; };
+		34A8359222DA3E100070C05D /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8359122DA3E100070C05D /* ErrorList.swift */; };
 		34C938C422D1E58800FD74D9 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C322D1E58700FD74D9 /* DownloadOperation.swift */; };
 		34C938C622D1E9B100FD74D9 /* DictionaryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */; };
 		34C938C822D1EA5200FD74D9 /* TranslationLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */; };
@@ -87,7 +90,10 @@
 		348BF85622D0E2D70057350A /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
 		348BF85822D0EB330057350A /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		348BF85A22D0EB600057350A /* DataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseProtocol.swift; sourceTree = "<group>"; };
-		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResponse.swift; sourceTree = "<group>"; };
+		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationResponse.swift; path = ../../TranslateModule/Entity/TranslationResponse.swift; sourceTree = "<group>"; };
+		34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TranslateApiUrl.plist; path = Services/TranslateService/TranslateApiUrl.plist; sourceTree = "<group>"; };
+		34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseClient.swift; sourceTree = "<group>"; };
+		34A8359122DA3E100070C05D /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
 		34C938C322D1E58700FD74D9 /* DownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 		34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryObject.swift; sourceTree = "<group>"; };
 		34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLanguages.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 				348BF82022D0C0340057350A /* ModulesCoordinator */,
 				348BF80E22D0BCD60057350A /* TranslateModule */,
 				348BF80F22D0BD180057350A /* TranslatedListModule */,
+				34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */,
 				348BF80822D0BCC60057350A /* Info.plist */,
 			);
 			path = Dictionary;
@@ -176,6 +183,7 @@
 				348BF85422D0E27F0057350A /* UIViewControllerStoryboardID.swift */,
 				348BF85622D0E2D70057350A /* StoryboardName.swift */,
 				34C938CB22D26ABB00FD74D9 /* Result.swift */,
+				34A8359122DA3E100070C05D /* ErrorList.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 		348BF81422D0BF120057350A /* TranslateService */ = {
 			isa = PBXGroup;
 			children = (
+				348BF85E22D12EB30057350A /* TranslationResponse.swift */,
 				348BF85022D0E1450057350A /* TranslateService.swift */,
 				348BF85222D0E1800057350A /* TranslateServiceProtocol.swift */,
 				34C938C322D1E58700FD74D9 /* DownloadOperation.swift */,
@@ -223,6 +232,7 @@
 			children = (
 				34C938CD22D26B8E00FD74D9 /* DataBaseModel */,
 				348BF85822D0EB330057350A /* DataBase.swift */,
+				34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */,
 				348BF85A22D0EB600057350A /* DataBaseProtocol.swift */,
 			);
 			path = DataBaseService;
@@ -231,7 +241,6 @@
 		348BF81622D0BF590057350A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				348BF85E22D12EB30057350A /* TranslationResponse.swift */,
 				34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */,
 				34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */,
 				34C938C922D1EAF600FD74D9 /* DictionaryObjectProtocol.swift */,
@@ -422,6 +431,7 @@
 				348BF80722D0BCC60057350A /* LaunchScreen.storyboard in Resources */,
 				348BF80422D0BCC60057350A /* Assets.xcassets in Resources */,
 				348BF83E22D0C7700057350A /* TranslatedListModule.storyboard in Resources */,
+				34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */,
 				348BF83422D0C7020057350A /* TranslateModule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,8 +479,10 @@
 				348BF84222D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift in Sources */,
 				348BF7FD22D0BCC50057350A /* AppDelegate.swift in Sources */,
 				34C938D022D26BA200FD74D9 /* DataStorage.xcdatamodeld in Sources */,
+				34A8359222DA3E100070C05D /* ErrorList.swift in Sources */,
 				348BF84022D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift in Sources */,
 				348BF83822D0C73C0057350A /* TranslatedListModuleInteractor.swift in Sources */,
+				34A8359022DA2CCD0070C05D /* DataBaseClient.swift in Sources */,
 				348BF83C22D0C75F0057350A /* TranslatedListModuleViewController.swift in Sources */,
 				348BF83022D0C2720057350A /* TranslateModulePresenterProtocol.swift in Sources */,
 			);

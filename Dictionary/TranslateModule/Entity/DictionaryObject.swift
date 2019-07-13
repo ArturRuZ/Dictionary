@@ -28,11 +28,11 @@ final class DictionaryObject: DictionaryObjectProtocol {
   var languageTo: TranslationLanguages
   var textForTranslate: String
   var translatedText: String
-  var time: Date?
+  var time: NSDate?
   
   //MARK - Initialization
   
-  init (languageFrom: TranslationLanguages, languageTo: TranslationLanguages, textForTranslate: String = defaultForTranslateText, translatedText: String = defaultTranslatedText, time: Date? = nil) {
+  init (languageFrom: TranslationLanguages, languageTo: TranslationLanguages, textForTranslate: String = defaultForTranslateText, translatedText: String = defaultTranslatedText, time: NSDate? = nil) {
     self.languageFrom = languageFrom
     self.languageTo = languageTo
     self.textForTranslate = textForTranslate

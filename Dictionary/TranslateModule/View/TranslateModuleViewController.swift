@@ -89,7 +89,7 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
     selectFromLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageFrom], for: .normal)
     selectToLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageTo], for: .normal)
   }
-  func showChangeLanguage(window: UIAlertController) {
+  func showAlert(window: UIAlertController) {
     self.present(window, animated: true)
   }
 }

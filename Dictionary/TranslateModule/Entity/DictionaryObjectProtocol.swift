@@ -14,7 +14,7 @@ protocol DictionaryObjectProtocol: class {
   var languageTo: TranslationLanguages {get set}
   var textForTranslate: String {get set}
   var translatedText: String {get set}
-  var time: Date? {get set}
+  var time: NSDate? {get set}
   func changeLanguageDirection()
   func isDefault() -> Bool
   func getSupportedLanguages() -> [TranslationLanguages: String]

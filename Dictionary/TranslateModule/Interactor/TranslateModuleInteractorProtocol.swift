@@ -12,12 +12,12 @@ import UIKit
 protocol  TranslateModuleInteractorInputProtocol: class {
   var output: TranslateModuleInteractorOutputProtocol {get set}
   func translate(text: String)
-  func prepareDictionaryObject()
+  func createDictionaryObject()
   func changeLanguageDirection()
-  func prepareChangeLanguageWindow(forTag: Int)
+  func createChangeLanguageWindow(forTag: Int)
 }
 
 protocol  TranslateModuleInteractorOutputProtocol: class {
-  func prepared(dictionaryObject: DictionaryObjectProtocol)
-  func preparedChangeLanguage(window: UIAlertController)
+  func prepare(dictionaryObject: DictionaryObjectProtocol)
+  func prepareWindow(alert: UIAlertController)
 }
