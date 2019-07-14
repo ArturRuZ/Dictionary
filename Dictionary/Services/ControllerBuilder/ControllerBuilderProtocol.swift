@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol ControllerBuilderProtocol: class {
   var cordinator: ModulesCoordinatorProtocol {get set}
   func buildRootController() -> UIViewController

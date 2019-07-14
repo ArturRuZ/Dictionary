@@ -8,16 +8,14 @@
 
 import Foundation
 
-
-final class TranslatedObject: TranslatedListCellModel {  
+final class TranslatedObject: TranslatedListCellModel {
     var textForTranslate: String
     var translatedText: String
-    var time: Date
-  
-  init(textForTranslate: String, translatedText: String, time: Date) {
+    var time: NSDate
+
+  init(textForTranslate: String, translatedText: String, time: NSDate) {
     self.textForTranslate = textForTranslate
     self.translatedText = translatedText
     self.time = time
   }
   }
-

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum ObjectSearchParametrs {
   case all
   case textForTranslate (textForTranslate: String)
@@ -24,10 +23,10 @@ enum ObjectsList: String {
 }
 
 protocol DataBaseProtocol: class {
-  
-  // MARK: - save methods rewrite objects wthit the same ID
-  
+
+  // MARK: - save methods rewrite objects wthi the same constraints
+
   func saveObject(parametrs: ObjectSaveParametrs, completion: @escaping (Result<Void>) -> Void)
-  func loadData<T>(with: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void)
-  func delete(with: ObjectSearchParametrs,inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void)
+  func loadData<T>(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void)
+  func delete(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void)
 }

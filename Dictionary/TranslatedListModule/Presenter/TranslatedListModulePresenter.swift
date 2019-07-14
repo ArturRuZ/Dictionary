@@ -6,21 +6,18 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 final class TranslatedListModulePresenter {
-  
-  //MARK: - Properties
-  
-  private weak var presenterDelegate :TranslatedListModulePresenterDelegateProtocol!
+
+  // MARK: - Properties
+
+  private weak var presenterDelegate: TranslatedListModulePresenterDelegateProtocol!
   private weak var view: TranslatedListModuleViewInputProtocol!
   private var interactor: TranslatedListModuleInteractorInputProtocol!
-  
-  
 }
 
- //MARK: - TranslatedListModulePresenterInputProtocol implementation
+ // MARK: - TranslatedListModulePresenterInputProtocol implementation
 
 extension TranslatedListModulePresenter: TranslatedListModulePresenterInputProtocol {
   var delegate: TranslatedListModulePresenterDelegateProtocol {
@@ -31,7 +28,7 @@ extension TranslatedListModulePresenter: TranslatedListModulePresenterInputProto
       presenterDelegate = newValue
     }
   }
-  
+
   var input: TranslatedListModuleInteractorInputProtocol {
     get {
       return interactor
@@ -40,7 +37,6 @@ extension TranslatedListModulePresenter: TranslatedListModulePresenterInputProto
       interactor = newValue
     }
   }
-  
   var output: TranslatedListModuleViewInputProtocol {
     get {
       return view
@@ -51,7 +47,7 @@ extension TranslatedListModulePresenter: TranslatedListModulePresenterInputProto
   }
 }
 
-//MARK: - TranslatedListModuleViewOutputProtocol  implementation
+// MARK: - TranslatedListModuleViewOutputProtocol  implementation
 
 extension TranslatedListModulePresenter: TranslatedListModuleViewOutputProtocol {
   func viewWillAppear() {
@@ -67,14 +63,17 @@ extension TranslatedListModulePresenter: TranslatedListModuleViewOutputProtocol 
     interactor.downloadDictionaryHistory(with: .all)
   }
   func rowSelected(with: TranslatedListCellModel) {
-    delegate.show(translateFor: with)
+    delegate.showTranslateFor(data: with)
   }
 }
 
 // MARK: - TranslatedListModuleInteractorOutputProtocol implementation
 
 extension TranslatedListModulePresenter: TranslatedListModuleInteractorOutputProtocol {
-  func prepared(dictionary: [TranslatedListCellModel]) {
+  func prepare(dictionary: [TranslatedObject]) {
     self.view.show(dictionary: dictionary)
+  }
+  func prepare(alert: UIAlertController) {
+    self.view.show(alert: alert)
   }
 }

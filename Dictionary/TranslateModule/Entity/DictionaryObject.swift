@@ -8,11 +8,10 @@
 
 import Foundation
 
-
 final class DictionaryObject: DictionaryObjectProtocol {
-  
-  //MARK - properties
-  
+
+  // MARK: - properties
+
   private static let defaultForTranslateText = "Text for translate"
   private static let defaultTranslatedText = "Translated text"
   private let supportedLanguages: [TranslationLanguages: String] = [
@@ -21,27 +20,27 @@ final class DictionaryObject: DictionaryObjectProtocol {
     TranslationLanguages.fr: "French",
     TranslationLanguages.es: "Spanish"
   ]
-  
-  //MARK - DictionaryObjectProtocol properties
-  
+
+  // MARK: - DictionaryObjectProtocol properties
+
   var languageFrom: TranslationLanguages
   var languageTo: TranslationLanguages
   var textForTranslate: String
   var translatedText: String
-  var time: Date?
-  
-  //MARK - Initialization
-  
-  init (languageFrom: TranslationLanguages, languageTo: TranslationLanguages, textForTranslate: String = defaultForTranslateText, translatedText: String = defaultTranslatedText, time: Date? = nil) {
+  var time: NSDate?
+
+  // MARK: - Initialization
+
+  init (languageFrom: TranslationLanguages = .en, languageTo: TranslationLanguages = .ru, textForTranslate: String = defaultForTranslateText, translatedText: String = defaultTranslatedText, time: NSDate? = nil) {
     self.languageFrom = languageFrom
     self.languageTo = languageTo
     self.textForTranslate = textForTranslate
     self.translatedText =  translatedText
     self.time = time
   }
-  
-  //MARK - DictionaryObjectProtocol methods
-  
+
+  // MARK: - DictionaryObjectProtocol methods
+
   func isDefault() -> Bool {
     if (self.textForTranslate == DictionaryObject.defaultForTranslateText) && (self.translatedText == DictionaryObject.defaultTranslatedText) {
       return true

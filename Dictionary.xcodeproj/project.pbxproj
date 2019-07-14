@@ -38,6 +38,11 @@
 		348BF85922D0EB330057350A /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85822D0EB330057350A /* DataBase.swift */; };
 		348BF85B22D0EB600057350A /* DataBaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85A22D0EB600057350A /* DataBaseProtocol.swift */; };
 		348BF85F22D12EB30057350A /* TranslationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85E22D12EB30057350A /* TranslationResponse.swift */; };
+		348E562C22DB214100B89A08 /* SettingsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E562B22DB214100B89A08 /* SettingsParams.swift */; };
+		348E562F22DB241F00B89A08 /* SettingsParamsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E562E22DB241F00B89A08 /* SettingsParamsProtocol.swift */; };
+		34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */; };
+		34A8359022DA2CCD0070C05D /* DataBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */; };
+		34A8359222DA3E100070C05D /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8359122DA3E100070C05D /* ErrorList.swift */; };
 		34C938C422D1E58800FD74D9 /* DownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C322D1E58700FD74D9 /* DownloadOperation.swift */; };
 		34C938C622D1E9B100FD74D9 /* DictionaryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */; };
 		34C938C822D1EA5200FD74D9 /* TranslationLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */; };
@@ -52,6 +57,7 @@
 		34C938DD22D28BE600FD74D9 /* TranslatedListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938DC22D28BE600FD74D9 /* TranslatedListCellView.swift */; };
 		34C938DF22D28C8D00FD74D9 /* TranslatedListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938DE22D28C8D00FD74D9 /* TranslatedListCellModel.swift */; };
 		34C938E122D2A5DC00FD74D9 /* TranslatedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C938E022D2A5DC00FD74D9 /* TranslatedObject.swift */; };
+		E78471FCEE1ACD471A4844CF /* Pods_Dictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF200C01499305130C75481A /* Pods_Dictionary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +93,12 @@
 		348BF85622D0E2D70057350A /* StoryboardName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardName.swift; sourceTree = "<group>"; };
 		348BF85822D0EB330057350A /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		348BF85A22D0EB600057350A /* DataBaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseProtocol.swift; sourceTree = "<group>"; };
-		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationResponse.swift; sourceTree = "<group>"; };
+		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationResponse.swift; path = ../../TranslateModule/Entity/TranslationResponse.swift; sourceTree = "<group>"; };
+		348E562B22DB214100B89A08 /* SettingsParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsParams.swift; sourceTree = "<group>"; };
+		348E562E22DB241F00B89A08 /* SettingsParamsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsParamsProtocol.swift; sourceTree = "<group>"; };
+		34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TranslateApiUrl.plist; path = Services/TranslateService/TranslateApiUrl.plist; sourceTree = "<group>"; };
+		34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseClient.swift; sourceTree = "<group>"; };
+		34A8359122DA3E100070C05D /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
 		34C938C322D1E58700FD74D9 /* DownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadOperation.swift; sourceTree = "<group>"; };
 		34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryObject.swift; sourceTree = "<group>"; };
 		34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLanguages.swift; sourceTree = "<group>"; };
@@ -102,6 +113,9 @@
 		34C938DC22D28BE600FD74D9 /* TranslatedListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListCellView.swift; sourceTree = "<group>"; };
 		34C938DE22D28C8D00FD74D9 /* TranslatedListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedListCellModel.swift; sourceTree = "<group>"; };
 		34C938E022D2A5DC00FD74D9 /* TranslatedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatedObject.swift; sourceTree = "<group>"; };
+		99271B62D012B2D0101BF089 /* Pods-Dictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary.debug.xcconfig"; path = "Target Support Files/Pods-Dictionary/Pods-Dictionary.debug.xcconfig"; sourceTree = "<group>"; };
+		AF200C01499305130C75481A /* Pods_Dictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED030553FEFAD337B22A206A /* Pods-Dictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary.release.xcconfig"; path = "Target Support Files/Pods-Dictionary/Pods-Dictionary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78471FCEE1ACD471A4844CF /* Pods_Dictionary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +135,8 @@
 			children = (
 				348BF7FB22D0BCC50057350A /* Dictionary */,
 				348BF7FA22D0BCC50057350A /* Products */,
+				B4B2F6D10B834039EFFFFA0F /* Pods */,
+				9433DA6425626FF513CF0252 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +158,7 @@
 				348BF82022D0C0340057350A /* ModulesCoordinator */,
 				348BF80E22D0BCD60057350A /* TranslateModule */,
 				348BF80F22D0BD180057350A /* TranslatedListModule */,
+				34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */,
 				348BF80822D0BCC60057350A /* Info.plist */,
 			);
 			path = Dictionary;
@@ -176,6 +194,8 @@
 				348BF85422D0E27F0057350A /* UIViewControllerStoryboardID.swift */,
 				348BF85622D0E2D70057350A /* StoryboardName.swift */,
 				34C938CB22D26ABB00FD74D9 /* Result.swift */,
+				34A8359122DA3E100070C05D /* ErrorList.swift */,
+				348E562D22DB240600B89A08 /* SettingsParams */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -211,6 +231,7 @@
 		348BF81422D0BF120057350A /* TranslateService */ = {
 			isa = PBXGroup;
 			children = (
+				348BF85E22D12EB30057350A /* TranslationResponse.swift */,
 				348BF85022D0E1450057350A /* TranslateService.swift */,
 				348BF85222D0E1800057350A /* TranslateServiceProtocol.swift */,
 				34C938C322D1E58700FD74D9 /* DownloadOperation.swift */,
@@ -223,6 +244,7 @@
 			children = (
 				34C938CD22D26B8E00FD74D9 /* DataBaseModel */,
 				348BF85822D0EB330057350A /* DataBase.swift */,
+				34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */,
 				348BF85A22D0EB600057350A /* DataBaseProtocol.swift */,
 			);
 			path = DataBaseService;
@@ -231,7 +253,6 @@
 		348BF81622D0BF590057350A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				348BF85E22D12EB30057350A /* TranslationResponse.swift */,
 				34C938C722D1EA5200FD74D9 /* TranslationLanguages.swift */,
 				34C938C522D1E9B100FD74D9 /* DictionaryObject.swift */,
 				34C938C922D1EAF600FD74D9 /* DictionaryObjectProtocol.swift */,
@@ -338,6 +359,15 @@
 			path = ControllerBuilder;
 			sourceTree = "<group>";
 		};
+		348E562D22DB240600B89A08 /* SettingsParams */ = {
+			isa = PBXGroup;
+			children = (
+				348E562B22DB214100B89A08 /* SettingsParams.swift */,
+				348E562E22DB241F00B89A08 /* SettingsParamsProtocol.swift */,
+			);
+			path = SettingsParams;
+			sourceTree = "<group>";
+		};
 		34C938CD22D26B8E00FD74D9 /* DataBaseModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +390,23 @@
 			path = CellXib;
 			sourceTree = "<group>";
 		};
+		9433DA6425626FF513CF0252 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF200C01499305130C75481A /* Pods_Dictionary.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4B2F6D10B834039EFFFFA0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				99271B62D012B2D0101BF089 /* Pods-Dictionary.debug.xcconfig */,
+				ED030553FEFAD337B22A206A /* Pods-Dictionary.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -367,9 +414,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 348BF80B22D0BCC60057350A /* Build configuration list for PBXNativeTarget "Dictionary" */;
 			buildPhases = (
+				78385C17BD4414D1081DBE36 /* [CP] Check Pods Manifest.lock */,
 				348BF7F522D0BCC50057350A /* Sources */,
 				348BF7F622D0BCC50057350A /* Frameworks */,
 				348BF7F722D0BCC50057350A /* Resources */,
+				348E563022DB64B000B89A08 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -422,11 +471,55 @@
 				348BF80722D0BCC60057350A /* LaunchScreen.storyboard in Resources */,
 				348BF80422D0BCC60057350A /* Assets.xcassets in Resources */,
 				348BF83E22D0C7700057350A /* TranslatedListModule.storyboard in Resources */,
+				34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */,
 				348BF83422D0C7020057350A /* TranslateModule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		348E563022DB64B000B89A08 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --config \"${SRCROOT}/swiftlint.yml\"\n\n";
+		};
+		78385C17BD4414D1081DBE36 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dictionary-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		348BF7F522D0BCC50057350A /* Sources */ = {
@@ -437,6 +530,7 @@
 				348BF82B22D0C2280057350A /* TranslateModuleViewController.swift in Sources */,
 				34C938E122D2A5DC00FD74D9 /* TranslatedObject.swift in Sources */,
 				348BF84722D0D0CE0057350A /* Application.swift in Sources */,
+				348E562C22DB214100B89A08 /* SettingsParams.swift in Sources */,
 				348BF82922D0C2160057350A /* TranslateModulePresenter.swift in Sources */,
 				34C938D822D26D4B00FD74D9 /* DictionaryHistory+CoreDataProperties.swift in Sources */,
 				34C938CA22D1EAF600FD74D9 /* DictionaryObjectProtocol.swift in Sources */,
@@ -450,6 +544,7 @@
 				34C938C822D1EA5200FD74D9 /* TranslationLanguages.swift in Sources */,
 				34C938D522D26D4B00FD74D9 /* Settings+CoreDataClass.swift in Sources */,
 				348BF82E22D0C2620057350A /*  TranslateModuleViewControllerProtocol.swift in Sources */,
+				348E562F22DB241F00B89A08 /* SettingsParamsProtocol.swift in Sources */,
 				348BF85722D0E2D70057350A /* StoryboardName.swift in Sources */,
 				348BF85922D0EB330057350A /* DataBase.swift in Sources */,
 				348BF83A22D0C7500057350A /* TranslatedListModulePresenter.swift in Sources */,
@@ -469,8 +564,10 @@
 				348BF84222D0C79E0057350A /* TranslatedListModulePresenterProtocol.swift in Sources */,
 				348BF7FD22D0BCC50057350A /* AppDelegate.swift in Sources */,
 				34C938D022D26BA200FD74D9 /* DataStorage.xcdatamodeld in Sources */,
+				34A8359222DA3E100070C05D /* ErrorList.swift in Sources */,
 				348BF84022D0C7840057350A /* TranslatedListModuleViewControllerProtocol.swift in Sources */,
 				348BF83822D0C73C0057350A /* TranslatedListModuleInteractor.swift in Sources */,
+				34A8359022DA2CCD0070C05D /* DataBaseClient.swift in Sources */,
 				348BF83C22D0C75F0057350A /* TranslatedListModuleViewController.swift in Sources */,
 				348BF83022D0C2720057350A /* TranslateModulePresenterProtocol.swift in Sources */,
 			);
@@ -608,6 +705,7 @@
 		};
 		348BF80C22D0BCC60057350A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99271B62D012B2D0101BF089 /* Pods-Dictionary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -626,6 +724,7 @@
 		};
 		348BF80D22D0BCC60057350A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED030553FEFAD337B22A206A /* Pods-Dictionary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

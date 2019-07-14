@@ -8,28 +8,27 @@
 
 import Foundation
 
-
 final class  DownloadOperation: Operation {
-  
+
   // MARK: - Properties
-  
+
   private var task: URLSessionDataTask?
   private var url: URL
   private let completion: (Result<Data>) -> Void
-  
+
   // MARK: - Initialization
-  
+
   init(url: URL, completion: @escaping (Result<Data>) -> Void ) {
     self.url = url
     self.completion = completion
     super.init()
   }
-  
+
   // MARK: - BuildIn Methods
-  
+
   override func main() {
     let semaphore = DispatchSemaphore(value: 0)
-    self.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+    self.task = URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
       if self.isCancelled {
         self.completion(Result(error: ErrorsList.translateIsCanceled))
       }
@@ -46,7 +45,7 @@ final class  DownloadOperation: Operation {
     self.task?.resume()
     semaphore.wait()
   }
-  
+
   override func cancel() {
     super.cancel()
     self.task?.cancel()

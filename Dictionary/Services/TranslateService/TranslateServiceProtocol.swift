@@ -8,18 +8,6 @@
 
 import Foundation
 
-
-enum ErrorsList: Error {
-  case urlIsIncorrect
-  case errorData
-  case translateIsCanceled
-  case fetchRequestBuildFailed(_ :String)
-  case couldntCastObjectToNecessaryType(_ :String)
-  case couldntInitEntity(_ :String)
-}
-
-
 protocol TranslateServiceProtocol: class {
-  func translateData<T>(fromURL: URL?, parseInto container: T.Type,completion: @escaping (Result<T>) -> Void) where T: Codable
+  func translateData<T>(fromURL: URL?, parseInto container: T.Type, completion: @escaping (Result<T>) -> Void) where T: Codable
 }
-

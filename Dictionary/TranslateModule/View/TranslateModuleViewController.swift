@@ -8,11 +8,10 @@
 
 import UIKit
 
-
 final class TranslateModuleViewController: UIViewController {
-  
+
   // MARK: - properties
-  
+
   @IBOutlet weak var textForTranslate: UITextView!
   @IBOutlet weak var translatedText: UITextView!
   private var viewOutput: TranslateModuleViewOutputProtocol!
@@ -37,20 +36,20 @@ final class TranslateModuleViewController: UIViewController {
     selectToLanguageButton.tag = 2
     return selectToLanguageButton
   }()
-  
+
   // MARK: - BuildIn methods
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     output.viewDidLoad()
     textForTranslate.delegate = self
     translatedText.delegate = self
-    configureNavigationBar()
+    configureUI()
   }
-  
+
   // MARK: - Private methods
-  
-  private func configureNavigationBar() {
+
+  private func configureUI() {
     self.navigationController?.navigationBar.isTranslucent = true
     self.navigationItem.titleView = changeLanguageDirectionButton
     let rightSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
@@ -59,14 +58,24 @@ final class TranslateModuleViewController: UIViewController {
     leftSpacer.width = 80
     self.navigationItem.leftBarButtonItems = [leftSpacer, UIBarButtonItem(customView: selectFromLanguageButton)]
     self.navigationItem.rightBarButtonItems = [rightSpacer, UIBarButtonItem(customView: selectToLanguageButton)]
+    textForTranslate.layer.cornerRadius = 5
+    textForTranslate.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+    textForTranslate.layer.borderWidth = 0.5
+    textForTranslate.clipsToBounds = true
+    translatedText.layer.cornerRadius = 5
+    translatedText.layer.borderColor = UIColor.gray.withAlphaComponent(0.5).cgColor
+    translatedText.layer.borderWidth = 0.5
+    translatedText.clipsToBounds = true
   }
-  
+
   // MARK: - @objc methods
-  
+
   @objc func showChangeLanguageWindow( _ sender: UIButton) {
+    //self.textForTranslate.endEditing(true)
     output.changelanguageButtonPressed(withTag: sender.tag)
   }
   @objc func changeLanguageDirection(_ sender: UIButton) {
+    //self.textForTranslate.endEditing(true)
     self.output.changelanguageDitrectionButtonPressed()
   }
 }
@@ -89,8 +98,8 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
     selectFromLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageFrom], for: .normal)
     selectToLanguageButton.setTitle(supportedLanguages[dictionaryObject.languageTo], for: .normal)
   }
-  func showChangeLanguage(window: UIAlertController) {
-    self.present(window, animated: true)
+  func show(alert: UIAlertController) {
+    self.present(alert, animated: true)
   }
 }
 
@@ -103,13 +112,13 @@ extension TranslateModuleViewController: UITextViewDelegate {
     return true
   }
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if (text == "\n") {
+    if text == "\n" {
       textView.resignFirstResponder()
       return true
     }
     return true
   }
   func textViewDidEndEditing(_ textView: UITextView) {
-    output.endEditing(text: textView.text)
+    self.textForTranslate.text != "" ? self.output.endEditing(text: self.textForTranslate.text) : ()
   }
 }

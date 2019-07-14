@@ -8,10 +8,9 @@
 
 import Foundation
 
-
 enum TranslationLanguages: String {
-  case ru = "ru"
-  case en = "en"
-  case fr = "fr"
-  case es = "es"
+  case ru
+  case en
+  case fr
+  case es
 }

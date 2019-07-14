@@ -8,15 +8,13 @@
 
 import UIKit
 
-
 final class TranslateModulePresenter {
-  
-    // MARK: - properties
-  
-  private weak var presenterDelegate : TranslateModulePresenterDelegateProtocol!
+
+// MARK: - properties
+
+  private weak var presenterDelegate: TranslateModulePresenterDelegateProtocol!
   private weak var view: TranslateModuleViewInputProtocol!
   private var interactor: TranslateModuleInteractorInputProtocol!
-  
 }
 
 // MARK: - TranslateModulePresenterInputProtocol implementation
@@ -30,7 +28,6 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       presenterDelegate = newValue
     }
   }
-  
   var input: TranslateModuleInteractorInputProtocol {
     get {
       return interactor
@@ -39,7 +36,6 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       interactor = newValue
     }
   }
-  
   var output: TranslateModuleViewInputProtocol {
     get {
       return view
@@ -48,8 +44,8 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       view = newValue
     }
   }
-  func show(Translatefor: DictionaryObjectProtocol) {
-    self.output.show(dictionaryObject: Translatefor)
+  func show(translatefor: DictionaryObjectProtocol) {
+    self.output.show(dictionaryObject: translatefor)
   }
 }
 
@@ -57,13 +53,13 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
 
 extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
   func viewDidLoad() {
-   interactor.prepareDictionaryObject()
+    interactor.createDictionaryObject()
   }
   func endEditing(text: String) {
     interactor.translate(text: text)
   }
   func changelanguageButtonPressed(withTag: Int) {
-    interactor.prepareChangeLanguageWindow(forTag: withTag)
+    interactor.createChangeLanguageWindow(forTag: withTag)
   }
   func changelanguageDitrectionButtonPressed() {
     interactor.changeLanguageDirection()
@@ -73,10 +69,10 @@ extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
 // MARK: - TranslateModuleInteractorOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
-  func preparedChangeLanguage(window: UIAlertController) {
-    view.showChangeLanguage(window: window)
+  func prepare(alert: UIAlertController) {
+    view.show(alert: alert)
   }
-  func prepared(dictionaryObject: DictionaryObjectProtocol) {
+  func prepare(dictionaryObject: DictionaryObjectProtocol) {
     view.show(dictionaryObject: dictionaryObject)
   }
 }

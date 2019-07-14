@@ -9,27 +9,36 @@
 import UIKit
 
 final class ControllerBuilder {
-  
+
   // MARK: - Private properties
-  
-  private let translateService: TranslateServiceProtocol = TranslateService()
-  private let dataBase: DataBaseProtocol = DataBase()
+
+  private let translateService: TranslateServiceProtocol
+  private let dataBase: DataBaseProtocol
   private weak var modulesCoordinator: ModulesCoordinatorProtocol!
   private var translateModulePresenter: TranslateModulePresenterInputProtocol!
-  
+
+  // MARK: - Initialization
+
+  init(translateService: TranslateServiceProtocol, dataBase: DataBaseProtocol) {
+    self.translateService = translateService
+    self.dataBase = dataBase
+  }
+
   // MARK: - Private methods
-  
-  private func createTranslateModuleController()->(UIViewController){
+
+  private func createTranslateModuleController() -> (UIViewController) {
     let assembly = TranslateModuleAssembly()
-    guard let translateModule = assembly.build(translateService: self.translateService, dataBase: self.dataBase) else {return UIViewController()}
-    guard let cordinator = modulesCoordinator as? TranslateModulePresenterDelegateProtocol else {return UIViewController()}
+    guard let translateModule = assembly.build(translateService: self.translateService, dataBase: self.dataBase) else {
+      return UIViewController()}
+    guard let cordinator = modulesCoordinator as? TranslateModulePresenterDelegateProtocol else {
+      return UIViewController()}
     translateModule.presenter.delegate = cordinator
     self.translateModulePresenter = translateModule.presenter
     let navigationVC = UINavigationController()
     navigationVC.pushViewController(translateModule.controller, animated: true)
     return navigationVC
   }
-  private func createTranslatedListModuleController()->(UIViewController){
+  private func createTranslatedListModuleController() -> (UIViewController) {
     let assembly = TranslatedListModuleAssembly()
     guard let translatedListModule = assembly.build(dataBase: self.dataBase) else {return UIViewController()}
     guard let cordinator = modulesCoordinator as? TranslatedListModulePresenterDelegateProtocol else {return UIViewController()}
@@ -54,8 +63,7 @@ extension ControllerBuilder: ControllerBuilderProtocol {
   func getTranslateModulePresenter() -> TranslateModulePresenterInputProtocol? {
     return self.translateModulePresenter
   }
-  
-  
+
   func buildRootController() -> UIViewController {
     let tabBarController = UITabBarController()
     let translateModuleVC = self.createTranslateModuleController()
@@ -67,4 +75,3 @@ extension ControllerBuilder: ControllerBuilderProtocol {
     return tabBarController
   }
 }
-

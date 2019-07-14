@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 final class TranslateModuleAssembly {
   func build(translateService: TranslateServiceProtocol, dataBase: DataBaseProtocol) -> (controller: UIViewController, presenter: TranslateModulePresenterInputProtocol)? {
     guard let viewController = TranslateModuleViewController.instantiateFromStoryboard(with: .translateModule) else {return nil}

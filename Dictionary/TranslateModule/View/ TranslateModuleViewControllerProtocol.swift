@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol TranslateModuleViewOutputProtocol: class {
   func endEditing(text: String)
   func viewDidLoad()
@@ -19,6 +18,5 @@ protocol TranslateModuleViewOutputProtocol: class {
 protocol TranslateModuleViewInputProtocol: class {
   var output: TranslateModuleViewOutputProtocol {get set}
   func show(dictionaryObject: DictionaryObjectProtocol)
-  func showChangeLanguage(window: UIAlertController)
+  func show(alert: UIAlertController)
 }
-
