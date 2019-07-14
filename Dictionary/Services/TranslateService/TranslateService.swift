@@ -8,22 +8,21 @@
 
 import Foundation
 
-
 final class TranslateService {
-  
+
   // MARK: - Properties
-  
+
   private var operationQueue = OperationQueue()
-  
+
   // MARK: - Initialization
-  
-  init(){
+
+  init() {
     operationQueue.name = "Translation queue"
     operationQueue.maxConcurrentOperationCount = 1
   }
-  
+
   // MARK: - Private methods
-  
+
   private func parse<T>(data: Data, container: T.Type, completion: @escaping (Result<T>) -> Void) where T: Codable {
     do {
       let response = try JSONDecoder().decode(container, from: data)
@@ -58,6 +57,3 @@ extension TranslateService: TranslateServiceProtocol {
     )
   }
 }
-
-
-

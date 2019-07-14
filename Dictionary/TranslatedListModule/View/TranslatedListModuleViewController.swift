@@ -8,11 +8,10 @@
 
 import UIKit
 
-
 final class TranslatedListModuleViewController: UIViewController {
-  
-  //MARK: - Properties
-  
+
+  // MARK: - Properties
+
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var translatedListTableView: UITableView!
   private let kTranslatedListCellNib = UINib(nibName: "TranslatedListCell", bundle: nil)
@@ -26,9 +25,9 @@ final class TranslatedListModuleViewController: UIViewController {
     deletButton.addTarget(self, action: #selector(clearDctionary), for: .touchUpInside)
     return deletButton
   }()
-  
-  //MARK: - Implementatin table config func
-  
+
+  // MARK: - Implementatin private methods
+
   private func setUpUI() {
     translatedListTableView.register(kTranslatedListCellNib, forCellReuseIdentifier: kTranslatedListCellIdentifier)
     translatedListTableView.rowHeight = UITableView.automaticDimension
@@ -37,36 +36,35 @@ final class TranslatedListModuleViewController: UIViewController {
     translatedListTableView.delegate = self
     translatedListTableView.tableFooterView = UIView(frame: CGRect.zero)
   }
-  
+  private func configureNavigationBar() {
+    self.navigationItem.title = "Dictionary"
+    self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: deleteButton)]
+  }
+
+  // MARK: - BuildIn methods
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpUI()
     setupSearchBar()
-    
+
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     output.viewWillAppear()
     configureNavigationBar()
   }
-  private func configureNavigationBar() {
-    self.navigationItem.title = "Dictionary"
-    self.navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: deleteButton)]
-    
-  }
-  
+
+  // MARK: - @objc methods
+
   @objc func clearDctionary() {
     viewOutput.deleteButtonPressed()
   }
 }
 
-
-//MARK: - Implementatin UITableViewDataSource
+// MARK: - Implementatin UITableViewDataSource
 
 extension TranslatedListModuleViewController: UITableViewDataSource {
-  
-  
-  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return translatedWords.count
   }
@@ -80,7 +78,7 @@ extension TranslatedListModuleViewController: UITableViewDataSource {
   }
 }
 
-//MARK: - Implementation UITableViewDelegate
+// MARK: - Implementation UITableViewDelegate
 
 extension TranslatedListModuleViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -89,11 +87,10 @@ extension TranslatedListModuleViewController: UITableViewDelegate {
   }
 }
 
-
-//MARK: - Implementation Search
+// MARK: - Implementation Search
 
 extension TranslatedListModuleViewController: UISearchBarDelegate {
-  private func setupSearchBar(){
+  private func setupSearchBar() {
     searchBar.delegate = self
   }
   func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -111,7 +108,7 @@ extension TranslatedListModuleViewController: UISearchBarDelegate {
   }
 }
 
-
+// MARK: - Implementation TranslatedListModuleViewInputProtocol
 
 extension TranslatedListModuleViewController: TranslatedListModuleViewInputProtocol {
   var output: TranslatedListModuleViewOutputProtocol {
@@ -122,8 +119,11 @@ extension TranslatedListModuleViewController: TranslatedListModuleViewInputProto
       viewOutput = newValue
     }
   }
-  func show(dictionary: [TranslatedListCellModel]) {
+  func show(dictionary: [TranslatedObject]) {
     self.translatedWords = dictionary
     translatedListTableView.reloadData()
+  }
+  func show(alert: UIAlertController) {
+    self.present(alert, animated: true)
   }
 }

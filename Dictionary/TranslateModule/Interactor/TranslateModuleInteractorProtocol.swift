@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol  TranslateModuleInteractorInputProtocol: class {
   var output: TranslateModuleInteractorOutputProtocol {get set}
   func translate(text: String)
@@ -19,5 +18,5 @@ protocol  TranslateModuleInteractorInputProtocol: class {
 
 protocol  TranslateModuleInteractorOutputProtocol: class {
   func prepare(dictionaryObject: DictionaryObjectProtocol)
-  func prepareWindow(alert: UIAlertController)
+  func prepare(alert: UIAlertController)
 }

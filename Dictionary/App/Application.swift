@@ -9,11 +9,10 @@
 import UIKit
 import Foundation
 
-
 final class Application {
-  
+
   // MARK: - Private properties
-  
+
   private let modulesCoordinator: ModulesCoordinatorProtocol = {
     let dataBase = DataBase()
     let translateService = TranslateService()
@@ -23,10 +22,9 @@ final class Application {
     controllerBuilder.cordinator = modulesCoordinator
     return modulesCoordinator
   }()
-  
-  
+
   // MARK: - BuildIn Methods
-  
+
   func rootViewController() -> UIViewController {
     return self.modulesCoordinator.getRootController()
   }

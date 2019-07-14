@@ -8,12 +8,11 @@
 
 import UIKit
 
-
 final class TranslateModulePresenter {
-  
+
 // MARK: - properties
-  
-  private weak var presenterDelegate : TranslateModulePresenterDelegateProtocol!
+
+  private weak var presenterDelegate: TranslateModulePresenterDelegateProtocol!
   private weak var view: TranslateModuleViewInputProtocol!
   private var interactor: TranslateModuleInteractorInputProtocol!
 }
@@ -45,8 +44,8 @@ extension TranslateModulePresenter: TranslateModulePresenterInputProtocol {
       view = newValue
     }
   }
-  func show(Translatefor: DictionaryObjectProtocol) {
-    self.output.show(dictionaryObject: Translatefor)
+  func show(translatefor: DictionaryObjectProtocol) {
+    self.output.show(dictionaryObject: translatefor)
   }
 }
 
@@ -70,8 +69,8 @@ extension TranslateModulePresenter: TranslateModuleViewOutputProtocol {
 // MARK: - TranslateModuleInteractorOutputProtocol implementation
 
 extension TranslateModulePresenter: TranslateModuleInteractorOutputProtocol {
-  func prepareWindow(alert: UIAlertController) {
-    view.showAlert(window: alert)
+  func prepare(alert: UIAlertController) {
+    view.show(alert: alert)
   }
   func prepare(dictionaryObject: DictionaryObjectProtocol) {
     view.show(dictionaryObject: dictionaryObject)

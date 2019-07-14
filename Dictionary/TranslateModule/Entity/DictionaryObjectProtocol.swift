@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol DictionaryObjectProtocol: class {
   var languageFrom: TranslationLanguages {get set}
   var languageTo: TranslationLanguages {get set}

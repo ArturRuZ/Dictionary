@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension DictionaryHistory {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<DictionaryHistory> {

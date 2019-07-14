@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum ErrorsList: Error {
   case urlIsIncorrect
   case errorData
@@ -19,4 +18,5 @@ enum ErrorsList: Error {
   case coudntConvertObject
   case noSuchTypeForDownload
   case obgectsNoFound
+  case saveFaild
 }

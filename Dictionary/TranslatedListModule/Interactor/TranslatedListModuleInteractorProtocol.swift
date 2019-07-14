@@ -6,8 +6,7 @@
 //  Copyright © 2019 Артур. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 protocol  TranslatedListModuleInteractorInputProtocol: class {
   var output: TranslatedListModuleInteractorOutputProtocol {get set}
@@ -17,5 +16,6 @@ protocol  TranslatedListModuleInteractorInputProtocol: class {
 }
 
 protocol  TranslatedListModuleInteractorOutputProtocol: class {
-  func prepared(dictionary: [TranslatedListCellModel])
+  func prepare(dictionary: [TranslatedObject])
+  func prepare(alert: UIAlertController)
 }

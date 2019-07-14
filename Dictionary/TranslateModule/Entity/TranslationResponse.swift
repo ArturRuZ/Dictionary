@@ -8,10 +8,7 @@
 
 import Foundation
 
-
 struct TranslationResponse: Codable {
   var code: Int
   var text: [String]
 }
-
-

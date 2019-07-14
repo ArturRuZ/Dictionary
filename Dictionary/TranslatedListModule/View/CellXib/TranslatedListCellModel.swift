@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol TranslatedListCellModel {
   var textForTranslate: String {get}
   var translatedText: String {get}

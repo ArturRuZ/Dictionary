@@ -8,25 +8,24 @@
 
 import UIKit
 
-
 final class TranslateModuleInteractor {
-  
+
   // MARK: - Properties
-  
+
   weak var interactorOutput: TranslateModuleInteractorOutputProtocol!
   private let translateService: TranslateServiceProtocol
   private let dataBase: DataBaseProtocol
   private var currentDictionaryObject: DictionaryObjectProtocol?
-  
+
   // MARK: - Initialization
-  
+
   init(translateService: TranslateServiceProtocol, dataBase: DataBaseProtocol) {
     self.translateService = translateService
     self.dataBase = dataBase
   }
-  
+
   // MARK: - Private methods
-  
+
   private func buildUrlToTranslate(data: DictionaryObjectProtocol) -> URL? {
     guard let plist = Bundle.main.url(forResource: "TranslateApiUrl", withExtension: "plist"),
       let contents = try? Data(contentsOf: plist),
@@ -47,6 +46,29 @@ final class TranslateModuleInteractor {
     alertController.addAction(UIAlertAction(title: "OK :[", style: .cancel, handler: nil))
     return alertController
   }
+  private func saveToBase(data: DictionaryObjectProtocol) {
+    self.dataBase.saveObject(parametrs: .tanslated(object: data)) { result in
+      if let error = result.error {
+        print (error)
+        DispatchQueue.main.async {
+          self.interactorOutput.prepare(alert: self.createErrorWindow())
+        }
+      }
+    }
+  }
+  private func saveToBase(languages fromData: DictionaryObjectProtocol) {
+    let supportedLanguages = fromData.getSupportedLanguages()
+    guard let languageTo = supportedLanguages[fromData.languageTo] else {return}
+    guard let languageFrom = supportedLanguages[fromData.languageFrom] else {return}
+    self.dataBase.saveObject(parametrs: .lastUsedLanguage(languageFrom: languageFrom, languageTo: languageTo )) { result in
+      if let error = result.error {
+        print (error)
+        DispatchQueue.main.async {
+          self.interactorOutput.prepare(alert: self.createErrorWindow())
+        }
+      }
+    }
+}
 }
 
 // MARK: - TranslateModuleInteractorInputProtocol implementation
@@ -61,56 +83,54 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
     }
   }
   func createDictionaryObject() {
-    dataBase.loadData(with: .all, inObjects: .settings) {(result: Result<[Settings]>) in
-      if let error = result.error {print (error)
+    dataBase.loadData(with: .all, inObjects: .settings) {(result: Result<[SettingsParams]>) in
+      if let error = result.error {print (error)}
+      let dictionaryObject = DictionaryObject()
+      if result.success?.count != 0 {
+        if let settings = result.success?[0] {
+          let supportedLanguages = dictionaryObject.getSupportedLanguages()
+          if let languageFrom = (supportedLanguages.filter { $0.value == "\(settings.languageFrom)" }).first?.key {dictionaryObject.languageFrom = languageFrom}
+          if let languageTo = (supportedLanguages.filter { $0.value == "\(settings.languageTo)" }).first?.key {dictionaryObject.languageTo = languageTo}
+        }
       }
-      //guard let settings = result.success?[0] else {return}
-      let dictionaryObject = DictionaryObject(languageFrom: .en, languageTo: .ru)
       self.currentDictionaryObject = dictionaryObject
       DispatchQueue.main.async {
-        
         self.output.prepare(dictionaryObject: dictionaryObject)
       }
     }
   }
   func translate(text: String) {
-    guard let data = currentDictionaryObject else {return}
-    data.textForTranslate = text
-    let url = self.buildUrlToTranslate(data: data)
+    guard let currentDictionaryObject = self.currentDictionaryObject else {return}
+    let textBeforeTranslate = currentDictionaryObject.textForTranslate
+    print ("\(textBeforeTranslate)")
+    currentDictionaryObject.textForTranslate = text
+    if currentDictionaryObject.isDefault() {
+      self.output.prepare(dictionaryObject: currentDictionaryObject)
+      return
+    }
+    let url = self.buildUrlToTranslate(data: currentDictionaryObject)
     self.translateService.translateData(fromURL: url, parseInto: TranslationResponse.self, completion: { [weak self] result in
       guard let self = self else {return}
       guard let success = result.success else {
         if let error = result.error {print (error)} else {print("Unknown error")}
         DispatchQueue.main.async {
-          self.interactorOutput.prepareWindow(alert: self.createErrorWindow())
+          self.interactorOutput.prepare(alert: self.createErrorWindow())
         }
         return
       }
-      data.time = NSDate()
-      data.translatedText = success.text[0]
-      self.output.prepare(dictionaryObject: data)
-      self.dataBase.saveObject(parametrs: .tanslated(object: data)) { result in
-        if let error = result.error {
-          print (error)
-          DispatchQueue.main.async {
-            self.interactorOutput.prepareWindow(alert: self.createErrorWindow())
-          }
-        }
+      currentDictionaryObject.time = NSDate()
+      currentDictionaryObject.translatedText = success.text[0]
+      self.output.prepare(dictionaryObject: currentDictionaryObject)
+      if currentDictionaryObject.textForTranslate != currentDictionaryObject.translatedText {
+      self.saveToBase(data: currentDictionaryObject)
       }
-      self.dataBase.saveObject(parametrs: .lastUsedLanguage(languageFrom: data.languageFrom.rawValue, languageTo: data.languageTo.rawValue)) { result in
-        if let error = result.error {
-          print (error)
-          DispatchQueue.main.async {
-            self.interactorOutput.prepareWindow(alert: self.createErrorWindow())
-          }
-        }
-      }
+      self.saveToBase(languages: currentDictionaryObject)
       }
     )}
   func changeLanguageDirection() {
-    guard let object = currentDictionaryObject else {return}
-    object.changeLanguageDirection()
-    object.isDefault() ? self.output.prepare(dictionaryObject: object) : self.translate(text: object.textForTranslate)
+    guard let currentDictionaryObject = self.currentDictionaryObject else {return}
+    currentDictionaryObject.changeLanguageDirection()
+    self.interactorOutput.prepare(dictionaryObject: currentDictionaryObject)
   }
   func createChangeLanguageWindow(forTag: Int) {
     var selectLanguage: TranslationLanguages?
@@ -120,18 +140,17 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
         guard let self = self else {return}
         selectLanguage = key
         guard let selectedLanguage = selectLanguage else {return}
-        guard self.currentDictionaryObject != nil else {return}
+        guard let currentDictionaryObject = self.currentDictionaryObject else {return}
         switch forTag {
-        case 1: self.currentDictionaryObject?.languageFrom = selectedLanguage
-        case 2: self.currentDictionaryObject?.languageTo = selectedLanguage
+        case 1: currentDictionaryObject.languageFrom = selectedLanguage
+        case 2: currentDictionaryObject.languageTo = selectedLanguage
         default:
           break
         }
-        self.translate(text: self.currentDictionaryObject!.textForTranslate)
+        currentDictionaryObject.isDefault() ? self.interactorOutput.prepare(dictionaryObject: currentDictionaryObject) : self.translate(text: currentDictionaryObject.textForTranslate)
       }))
     }
     alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    interactorOutput.prepareWindow(alert: alertController)
+    interactorOutput.prepare(alert: alertController)
   }
 }
-

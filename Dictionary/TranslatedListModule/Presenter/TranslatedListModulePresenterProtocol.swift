@@ -8,14 +8,11 @@
 
 import Foundation
 
-
 protocol TranslatedListModulePresenterInputProtocol: class {
   var delegate: TranslatedListModulePresenterDelegateProtocol {get set}
   var input: TranslatedListModuleInteractorInputProtocol {get set}
   var output: TranslatedListModuleViewInputProtocol {get set}
 }
 protocol TranslatedListModulePresenterDelegateProtocol: class {
-  func show(translateFor: TranslatedListCellModel)
+  func showTranslateFor(data: TranslatedListCellModel)
 }
-
-

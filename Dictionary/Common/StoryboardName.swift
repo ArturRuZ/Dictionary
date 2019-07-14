@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum StoryboardName: String {
   case translateModule = "TranslateModule"
   case translatedListModule = "TranslatedListModule"

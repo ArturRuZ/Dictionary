@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 protocol ModulesCoordinatorProtocol: class {
   func getRootController() -> UIViewController
 }

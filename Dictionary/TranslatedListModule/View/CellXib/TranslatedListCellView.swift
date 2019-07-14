@@ -9,13 +9,11 @@
 import Foundation
 import UIKit
 
-
 class TranslatedListCellView: UITableViewCell {
-  
+
   @IBOutlet weak var textForTranslate: UILabel!
   @IBOutlet weak var translatedText: UILabel!
-  
-  
+
   var translatedListCellModel: TranslatedListCellModel? {
     didSet {
       guard let translatedListCellModel = translatedListCellModel else {return}

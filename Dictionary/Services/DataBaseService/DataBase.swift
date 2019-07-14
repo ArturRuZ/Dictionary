@@ -10,9 +10,9 @@ import Foundation
 import CoreData
 
 final class DataBase: NSObject {
-  
+
   // MARK: - Properties
-  
+
   private lazy var persistentContainer: NSPersistentContainer = {
     let container = NSPersistentContainer(name: "DataStorage")
     container.loadPersistentStores(completionHandler: { (_, error) in
@@ -23,9 +23,9 @@ final class DataBase: NSObject {
     container.viewContext.automaticallyMergesChangesFromParent = true
     return container
   }()
-  
+
   // MARK: - Private Methods
-  
+
   private func saveIn(context: NSManagedObjectContext) throws {
     context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     if context.hasChanges {
@@ -38,11 +38,13 @@ final class DataBase: NSObject {
       else {return completion(Result(error: ErrorsList.couldntInitEntity(": \(fromEntity.rawValue)")))}
     return completion(Result(value: entityDescription))
   }
-  
+
   private func setupFetchRequest(inEntity: ObjectsList, byAttribute: String = "", forValue: String = "") -> NSFetchRequest<NSFetchRequestResult> {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "\(inEntity.rawValue)")
     switch (byAttribute, forValue) {
-    case ("", ""):
+    case ("", _):
+      break
+    case (_, ""):
       break
     default:
       fetchRequest.predicate = NSPredicate(format: "\(byAttribute) = %@", "\(forValue)")
@@ -62,9 +64,9 @@ final class DataBase: NSObject {
 // MARK: - DataBaseProtocol implementation
 
 extension DataBase: DataBaseProtocol {
-  
+
   // MARK: - saveObject DataBaseProtocol func
-  
+
   func saveObject(parametrs: ObjectSaveParametrs, completion: @escaping (Result<Void>) -> Void) {
     switch parametrs {
     case .tanslated (let object):
@@ -79,9 +81,9 @@ extension DataBase: DataBaseProtocol {
       }
     }
   }
-  
+
   // MARK: - loadObject DataBaseProtocol func
-  
+
   func loadData<T>(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       do {
@@ -92,9 +94,9 @@ extension DataBase: DataBaseProtocol {
       }
     }
   }
-  
+
   // MARK: - deleteObject DataBaseProtocol func
-  
+
   func delete(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       do {
@@ -107,15 +109,19 @@ extension DataBase: DataBaseProtocol {
       }
     }
   }
-  
+
   // MARK: - timerTask save private func
-  
+
   private func save(object: DictionaryObjectProtocol, completion: @escaping (Result<Void>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       self.getEntityDescription(fromEntity: .dictionaryHistory, context: context) {[weak self] result in
         guard let self = self else {return}
         guard let error = result.error else {
-          let dictionaryHistory = DictionaryHistory(entity: result.success!, insertInto: context)
+          guard let entity = result.success else {
+            completion(Result(error: ErrorsList.saveFaild))
+            return
+          }
+          let dictionaryHistory = DictionaryHistory(entity: entity, insertInto: context)
           dictionaryHistory.textForTranslate = object.textForTranslate
           dictionaryHistory.translatedText = object.translatedText
           dictionaryHistory.time = object.time as NSDate?
@@ -129,13 +135,17 @@ extension DataBase: DataBaseProtocol {
       }
     }
   }
-  
+
   private func save(languageFrom: String, languageTo: String, completion: @escaping (Result<Void>) -> Void) {
     self.persistentContainer.performBackgroundTask {context in
       self.getEntityDescription(fromEntity: .settings, context: context) {[weak self] result in
         guard let self = self else {return}
         guard let error = result.error else {
-          let newSettings = Settings(entity: result.success!, insertInto: context)
+          guard let entity = result.success else {
+            completion(Result(error: ErrorsList.saveFaild))
+            return
+          }
+          let newSettings = Settings(entity: entity, insertInto: context)
           newSettings.id = "lastUsedLanguage"
           newSettings.lastLanguageFromTranslate = languageFrom
           newSettings.lastLanguageToTranslate = languageTo
@@ -149,9 +159,9 @@ extension DataBase: DataBaseProtocol {
       }
     }
   }
-  
+
   // MARK: - findObject private func
-  
+
   private func findObjects<T>(with: ObjectSearchParametrs, inObjects: ObjectsList, inContext: NSManagedObjectContext) throws -> [T] {
     var fetchRequest: NSFetchRequest<NSFetchRequestResult>?
     switch with {
@@ -159,11 +169,9 @@ extension DataBase: DataBaseProtocol {
     case .all:
       fetchRequest = self.setupFetchRequest(inEntity: inObjects, byAttribute: "", forValue: "")
     }
-   
+
     guard fetchRequest != nil else {throw ErrorsList.fetchRequestBuildFailed("\(String(describing: fetchRequest))")}
     guard let findItems = try? inContext.fetch(fetchRequest!) as? [T] else {throw ErrorsList.couldntCastObjectToNecessaryType("\(T.self)")}
     return findItems
   }
 }
-
-
