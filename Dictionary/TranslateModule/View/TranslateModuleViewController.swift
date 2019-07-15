@@ -71,12 +71,12 @@ final class TranslateModuleViewController: UIViewController {
   // MARK: - @objc methods
 
   @objc func showChangeLanguageWindow( _ sender: UIButton) {
-    //self.textForTranslate.endEditing(true)
     output.changelanguageButtonPressed(withTag: sender.tag)
+    self.textForTranslate.endEditing(true)
   }
   @objc func changeLanguageDirection(_ sender: UIButton) {
-    //self.textForTranslate.endEditing(true)
     self.output.changelanguageDitrectionButtonPressed()
+    self.textForTranslate.endEditing(true)
   }
 }
 
@@ -114,11 +114,11 @@ extension TranslateModuleViewController: UITextViewDelegate {
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     if text == "\n" {
       textView.resignFirstResponder()
+      self.textForTranslate.text != "" ? self.output.endEditing(text: self.textForTranslate.text) : ()
       return true
     }
     return true
   }
   func textViewDidEndEditing(_ textView: UITextView) {
-    self.textForTranslate.text != "" ? self.output.endEditing(text: self.textForTranslate.text) : ()
   }
 }
