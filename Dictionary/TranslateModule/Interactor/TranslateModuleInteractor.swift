@@ -95,7 +95,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
       }
       self.currentDictionaryObject = dictionaryObject
       DispatchQueue.main.async {
-        self.output.prepare(dictionaryObject: dictionaryObject)
+        self.interactorOutput.prepare(dictionaryObject: dictionaryObject)
       }
     }
   }
