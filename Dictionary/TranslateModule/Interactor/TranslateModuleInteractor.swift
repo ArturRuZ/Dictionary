@@ -101,8 +101,6 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
   }
   func translate(text: String) {
     guard let currentDictionaryObject = self.currentDictionaryObject else {return}
-    let textBeforeTranslate = currentDictionaryObject.textForTranslate
-    print ("\(textBeforeTranslate)")
     currentDictionaryObject.textForTranslate = text
     if currentDictionaryObject.isDefault() {
       self.output.prepare(dictionaryObject: currentDictionaryObject)
@@ -119,6 +117,11 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
         return
       }
       currentDictionaryObject.time = NSDate()
+      guard !success.text.isEmpty else {
+        currentDictionaryObject.translatedText = ""
+        self.output.prepare(dictionaryObject: currentDictionaryObject)
+        return
+      }
       currentDictionaryObject.translatedText = success.text[0]
       self.output.prepare(dictionaryObject: currentDictionaryObject)
       if currentDictionaryObject.textForTranslate != currentDictionaryObject.translatedText {

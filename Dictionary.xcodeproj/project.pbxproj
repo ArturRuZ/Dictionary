@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3413D1C322E1F52A00D0A210 /* TestableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413D1C222E1F52A00D0A210 /* TestableProtocol.swift */; };
 		348BF7FD22D0BCC50057350A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF7FC22D0BCC50057350A /* AppDelegate.swift */; };
 		348BF80422D0BCC60057350A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348BF80322D0BCC60057350A /* Assets.xcassets */; };
 		348BF80722D0BCC60057350A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348BF80522D0BCC60057350A /* LaunchScreen.storyboard */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3413D1C222E1F52A00D0A210 /* TestableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestableProtocol.swift; sourceTree = "<group>"; };
 		348BF7F922D0BCC50057350A /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348BF7FC22D0BCC50057350A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348BF80322D0BCC60057350A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				348E565022DE3A1700B89A08 /* DataBaseMock.swift */,
 				348E564A22DE37C700B89A08 /* InteractorOutputMock.swift */,
 				348E564E22DE390D00B89A08 /* TranslateServiceMock.swift */,
+				3413D1C222E1F52A00D0A210 /* TestableProtocol.swift */,
 			);
 			path = TranslateModuleInteractorTests;
 			sourceTree = "<group>";
@@ -657,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				348E565122DE3A1700B89A08 /* DataBaseMock.swift in Sources */,
+				3413D1C322E1F52A00D0A210 /* TestableProtocol.swift in Sources */,
 				348E564622DE2A9900B89A08 /* TranslateModuleInteractorTest.swift in Sources */,
 				348E564B22DE37C700B89A08 /* InteractorOutputMock.swift in Sources */,
 				348E564F22DE390D00B89A08 /* TranslateServiceMock.swift in Sources */,

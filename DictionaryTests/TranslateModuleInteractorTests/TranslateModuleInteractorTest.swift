@@ -11,36 +11,58 @@ import XCTest
 
 class TranslateModuleInteractorTest: XCTestCase {
   var translateModuleIneractor: TranslateModuleInteractorInputProtocol!
-  var interactorOutput: TranslateModuleInteractorOutputProtocol!
-  var testableObject: Testable!
+  var testableObject: TestableProtocol!
 
   override func setUp() {
     translateModuleIneractor = TranslateModuleInteractor(translateService: TranslateServiceMock(), dataBase: DataBase())
-    interactorOutput = InteractorOutputMock()
+    let interactorOutput = InteractorOutputMock()
     translateModuleIneractor.output = interactorOutput
-    testableObject = interactorOutput as? Testable
+    testableObject = interactorOutput as TestableProtocol
+    print ("!!!Setup!!!!")
   }
 
   override func tearDown() {
-    translateModuleIneractor = nil
-    interactorOutput = nil
     testableObject = nil
+    translateModuleIneractor = nil
+    print ("!!!TearDown!!!!")
   }
+
   func testCreateDictionaryObject() {
     // MARK: - Given
-    guard let object = testableObject else {
-      XCTFail("no testableObject")
-      return
-    }
-    keyValueObservingExpectation(for: object, keyPath: "isCreated", expectedValue: "true")
+    keyValueObservingExpectation(for: testableObject ?? InteractorOutputMock(), keyPath: "isCreated", expectedValue: true)
     // MARK: - When
     translateModuleIneractor.createDictionaryObject()
     // MARK: - Then
-    waitForExpectations(timeout: 7)
+    waitForExpectations(timeout: 3)
   }
 
   func testTranslate() {
-   let tes
+    // MARK: - Given
+    let text = "Dog"
+    let dictionaryObjectExpectation = XCTKVOExpectation(keyPath: "isCreated", object: testableObject ?? InteractorOutputMock())
+    let translatExpectation = XCTKVOExpectation(keyPath: "isTranslated", object: testableObject ?? InteractorOutputMock())
+    dictionaryObjectExpectation.handler = { [weak self] observedObject, _ in
+      guard let observedObject = observedObject as? TestableProtocol else {
+        return false
+      }
+      guard let self = self else {return false}
+      if observedObject.isCreated == true {
+        self.translateModuleIneractor.translate(text: text)
+        return true
+      }
+      return false
+    }
+    translatExpectation.handler = {observedObject, _ in
+      guard let observedObject = observedObject as? TestableProtocol else {
+        return false
+      }
+      return observedObject.isTranslated == true
+    }
+    // MARK: - When
+    self.translateModuleIneractor.createDictionaryObject()
+    // MARK: - Then
+    let result = XCTWaiter().wait(for: [translatExpectation, dictionaryObjectExpectation], timeout: 15)
+   XCTAssertEqual(result, .completed)
   }
 //  func changeLanguageDirection()
 //  func createChangeLanguageWindow(forTag: Int)

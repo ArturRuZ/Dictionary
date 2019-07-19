@@ -9,17 +9,16 @@
 import UIKit
 @testable import Dictionary
 
-class InteractorOutputMock: NSObject, TranslateModuleInteractorOutputProtocol, Testable {
+class InteractorOutputMock: NSObject, TranslateModuleInteractorOutputProtocol, TestableProtocol {
 
-  @objc dynamic var isCreated: NSString = "false"
+  @objc dynamic var isCreated = false
+  @objc dynamic var isTranslated = false
 
   func prepare(dictionaryObject: DictionaryObjectProtocol) {
-    if dictionaryObject.isDefault() {isCreated = "true"}
+    if dictionaryObject.isDefault() {isCreated = true} else {
+      isTranslated = true
+    }
   }
   func prepare(alert: UIAlertController) {
   }
-}
-
-@objc protocol Testable: class {
- @objc dynamic var isCreated: NSString {get}
 }
