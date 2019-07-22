@@ -136,6 +136,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
     self.interactorOutput.prepare(dictionaryObject: currentDictionaryObject)
   }
   func createChangeLanguageWindow(forTag: Int) {
+    if !(1...2 ~= forTag) {return}
     var selectLanguage: TranslationLanguages?
     let alertController = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
     for (key, value) in currentDictionaryObject?.getSupportedLanguages() ?? [:] {

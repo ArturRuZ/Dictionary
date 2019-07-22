@@ -11,14 +11,12 @@ import Foundation
 
 class DataBaseMock: DataBaseProtocol {
   func saveObject(parametrs: ObjectSaveParametrs, completion: @escaping (Result<Void>) -> Void) {
-  
+  completion(Result(value: ()))
   }
-
   func loadData<T>(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<[T]>) -> Void) {
-
+  completion(Result(value: []))
   }
-  
   func delete(with parametrs: ObjectSearchParametrs, inObjects: ObjectsList, completion: @escaping (Result<Void>) -> Void) {
-
+  completion(Result(value: ()))
   }
 }

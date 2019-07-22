@@ -11,13 +11,13 @@ import XCTest
 
 class TranslateModuleInteractorTest: XCTestCase {
   var translateModuleIneractor: TranslateModuleInteractorInputProtocol!
-  var testableObject: TestableProtocol!
+  var testableObject: TranslateInteractorTestableProtocol!
 
   override func setUp() {
-    translateModuleIneractor = TranslateModuleInteractor(translateService: TranslateServiceMock(), dataBase: DataBase())
+    translateModuleIneractor = TranslateModuleInteractor(translateService: TranslateServiceMock(), dataBase: DataBaseMock())
     let interactorOutput = InteractorOutputMock()
     translateModuleIneractor.output = interactorOutput
-    testableObject = interactorOutput as TestableProtocol
+    testableObject = interactorOutput as TranslateInteractorTestableProtocol
     print ("!!!Setup!!!!")
   }
 
@@ -40,37 +40,82 @@ class TranslateModuleInteractorTest: XCTestCase {
     // MARK: - Given
     let text = "Dog"
     let dictionaryObjectExpectation = XCTKVOExpectation(keyPath: "isCreated", object: testableObject ?? InteractorOutputMock())
-    let translatExpectation = XCTKVOExpectation(keyPath: "isTranslated", object: testableObject ?? InteractorOutputMock())
+    let translateExpectation = XCTKVOExpectation(keyPath: "isTranslated", object: testableObject ?? InteractorOutputMock())
     dictionaryObjectExpectation.handler = { [weak self] observedObject, _ in
-      guard let observedObject = observedObject as? TestableProtocol else {
+      guard let observedObject = observedObject as? TranslateInteractorTestableProtocol else {
         return false
       }
       guard let self = self else {return false}
-      if observedObject.isCreated == true {
+      if observedObject.isCreated {
         self.translateModuleIneractor.translate(text: text)
         return true
       }
       return false
     }
-    translatExpectation.handler = {observedObject, _ in
-      guard let observedObject = observedObject as? TestableProtocol else {
+    translateExpectation.handler = {observedObject, _ in
+      guard let observedObject = observedObject as? TranslateInteractorTestableProtocol else {
         return false
       }
-      return observedObject.isTranslated == true
+      return observedObject.isTranslated
     }
     // MARK: - When
     self.translateModuleIneractor.createDictionaryObject()
     // MARK: - Then
-    let result = XCTWaiter().wait(for: [translatExpectation, dictionaryObjectExpectation], timeout: 15)
-   XCTAssertEqual(result, .completed)
+    let result = XCTWaiter().wait(for: [translateExpectation, dictionaryObjectExpectation], timeout: 15)
+    XCTAssertEqual(result, .completed)
   }
-//  func changeLanguageDirection()
-//  func createChangeLanguageWindow(forTag: Int)
-
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measure {
-      // Put the code you want to measure the time of here.
+  func testChangeLanguageDirection() {
+    // MARK: - Given
+    let dictionaryObjectExpectation = XCTKVOExpectation(keyPath: "isCreated", object: testableObject ?? InteractorOutputMock())
+    let changeLanguageExpectation = XCTKVOExpectation(keyPath: "isLanguageChanged", object: testableObject ?? InteractorOutputMock())
+    dictionaryObjectExpectation.handler = { [weak self] observedObject, _ in
+      guard let observedObject = observedObject as? TranslateInteractorTestableProtocol else {
+        return false
+      }
+      guard let self = self else {return false}
+      if observedObject.isCreated {
+        self.translateModuleIneractor.changeLanguageDirection()
+        return true
+      }
+      return false
     }
+    changeLanguageExpectation.handler = { observedObject, _ in
+      guard let observedObject = observedObject as? TranslateInteractorTestableProtocol else {
+        return false
+      }
+      return observedObject.isLanguageChanged
+    }
+    // MARK: - When
+    self.translateModuleIneractor.createDictionaryObject()
+    // MARK: - Then
+    let result = XCTWaiter().wait(for: [dictionaryObjectExpectation, changeLanguageExpectation], timeout: 15)
+    XCTAssertEqual(result, .completed)
+  }
+  func testCreateChangeLanguageWindowTag1() {
+    // MARK: - Given
+    let changeLanguageWindowExpectation = XCTKVOExpectation(keyPath: "isAlertPrepared", object: testableObject ?? InteractorOutputMock())
+    // MARK: - When
+    self.translateModuleIneractor.createChangeLanguageWindow(forTag: 1)
+    // MARK: - Then
+    let result = XCTWaiter().wait(for: [changeLanguageWindowExpectation], timeout: 15)
+    XCTAssertEqual(result, .completed)
+  }
+  func testCreateChangeLanguageWindowTag2() {
+    // MARK: - Given
+    let changeLanguageWindowExpectation = XCTKVOExpectation(keyPath: "isAlertPrepared", object: testableObject ?? InteractorOutputMock())
+    // MARK: - When
+    self.translateModuleIneractor.createChangeLanguageWindow(forTag: 2)
+    // MARK: - Then
+    let result = XCTWaiter().wait(for: [changeLanguageWindowExpectation], timeout: 15)
+    XCTAssertEqual(result, .completed)
+  }
+  func testFailedCreateChangeLanguageWindow() {
+    // MARK: - Given
+    let changeLanguageWindowExpectation = XCTKVOExpectation(keyPath: "isAlertPrepared", object: testableObject ?? InteractorOutputMock())
+    // MARK: - When
+    self.translateModuleIneractor.createChangeLanguageWindow(forTag: 3)
+    // MARK: - Then
+    let result = XCTWaiter().wait(for: [changeLanguageWindowExpectation], timeout: 7)
+    XCTAssertEqual(result, .timedOut)
   }
 }

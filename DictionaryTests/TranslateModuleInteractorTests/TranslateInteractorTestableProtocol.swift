@@ -8,7 +8,9 @@
 
 import Foundation
 
-@objc protocol TestableProtocol: class {
+@objc protocol TranslateInteractorTestableProtocol: class {
   @objc dynamic var isCreated: Bool {get set}
   @objc dynamic var isTranslated: Bool {get set}
+  @objc dynamic var isLanguageChanged: Bool {get set}
+  @objc dynamic var isAlertPrepared: Bool {get set}
 }
