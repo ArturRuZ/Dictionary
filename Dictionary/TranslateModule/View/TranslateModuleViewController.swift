@@ -15,6 +15,7 @@ final class TranslateModuleViewController: UIViewController {
   @IBOutlet weak var textForTranslate: UITextView!
   @IBOutlet weak var translatedText: UITextView!
   private var viewOutput: TranslateModuleViewOutputProtocol!
+  private var isDefault = false
   private lazy var changeLanguageDirectionButton: UIButton = {
     let changeLanguageDirectionButton = UIButton(type: .system)
     changeLanguageDirectionButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
@@ -92,6 +93,7 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
     }
   }
   func show(dictionaryObject: DictionaryObjectProtocol) {
+    self.isDefault = dictionaryObject.isDefault()
     textForTranslate.text = dictionaryObject.textForTranslate
     translatedText.text = dictionaryObject.translatedText
     let supportedLanguages = dictionaryObject.getSupportedLanguages()
@@ -107,8 +109,10 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
 
 extension TranslateModuleViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+    if isDefault {
     textForTranslate.text = ""
     translatedText.text = ""
+    }
     return true
   }
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
