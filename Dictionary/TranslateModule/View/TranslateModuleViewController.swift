@@ -15,6 +15,7 @@ final class TranslateModuleViewController: UIViewController {
   @IBOutlet weak var textForTranslate: UITextView!
   @IBOutlet weak var translatedText: UITextView!
   private var viewOutput: TranslateModuleViewOutputProtocol!
+  private var isDefault = false
   private lazy var changeLanguageDirectionButton: UIButton = {
     let changeLanguageDirectionButton = UIButton(type: .system)
     changeLanguageDirectionButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
@@ -71,12 +72,12 @@ final class TranslateModuleViewController: UIViewController {
   // MARK: - @objc methods
 
   @objc func showChangeLanguageWindow( _ sender: UIButton) {
-    //self.textForTranslate.endEditing(true)
     output.changelanguageButtonPressed(withTag: sender.tag)
+    self.textForTranslate.endEditing(true)
   }
   @objc func changeLanguageDirection(_ sender: UIButton) {
-    //self.textForTranslate.endEditing(true)
     self.output.changelanguageDitrectionButtonPressed()
+    self.textForTranslate.endEditing(true)
   }
 }
 
@@ -92,6 +93,7 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
     }
   }
   func show(dictionaryObject: DictionaryObjectProtocol) {
+    self.isDefault = dictionaryObject.isDefault()
     textForTranslate.text = dictionaryObject.textForTranslate
     translatedText.text = dictionaryObject.translatedText
     let supportedLanguages = dictionaryObject.getSupportedLanguages()
@@ -107,18 +109,20 @@ extension TranslateModuleViewController: TranslateModuleViewInputProtocol {
 
 extension TranslateModuleViewController: UITextViewDelegate {
   func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+    if isDefault {
     textForTranslate.text = ""
     translatedText.text = ""
+    }
     return true
   }
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     if text == "\n" {
       textView.resignFirstResponder()
+      self.textForTranslate.text != "" ? self.output.endEditing(text: self.textForTranslate.text) : ()
       return true
     }
     return true
   }
   func textViewDidEndEditing(_ textView: UITextView) {
-    self.textForTranslate.text != "" ? self.output.endEditing(text: self.textForTranslate.text) : ()
   }
 }

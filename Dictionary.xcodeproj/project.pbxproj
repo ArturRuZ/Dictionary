@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3413D1C322E1F52A00D0A210 /* TranslateInteractorTestableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413D1C222E1F52A00D0A210 /* TranslateInteractorTestableProtocol.swift */; };
 		348BF7FD22D0BCC50057350A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF7FC22D0BCC50057350A /* AppDelegate.swift */; };
 		348BF80422D0BCC60057350A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348BF80322D0BCC60057350A /* Assets.xcassets */; };
 		348BF80722D0BCC60057350A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 348BF80522D0BCC60057350A /* LaunchScreen.storyboard */; };
@@ -40,6 +41,10 @@
 		348BF85F22D12EB30057350A /* TranslationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348BF85E22D12EB30057350A /* TranslationResponse.swift */; };
 		348E562C22DB214100B89A08 /* SettingsParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E562B22DB214100B89A08 /* SettingsParams.swift */; };
 		348E562F22DB241F00B89A08 /* SettingsParamsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E562E22DB241F00B89A08 /* SettingsParamsProtocol.swift */; };
+		348E564622DE2A9900B89A08 /* TranslateModuleInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E564522DE2A9900B89A08 /* TranslateModuleInteractorTest.swift */; };
+		348E564B22DE37C700B89A08 /* InteractorOutputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E564A22DE37C700B89A08 /* InteractorOutputMock.swift */; };
+		348E564F22DE390D00B89A08 /* TranslateServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E564E22DE390D00B89A08 /* TranslateServiceMock.swift */; };
+		348E565122DE3A1700B89A08 /* DataBaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348E565022DE3A1700B89A08 /* DataBaseMock.swift */; };
 		34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */; };
 		34A8359022DA2CCD0070C05D /* DataBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */; };
 		34A8359222DA3E100070C05D /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A8359122DA3E100070C05D /* ErrorList.swift */; };
@@ -60,7 +65,18 @@
 		E78471FCEE1ACD471A4844CF /* Pods_Dictionary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF200C01499305130C75481A /* Pods_Dictionary.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		348E564022DE25DC00B89A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348BF7F122D0BCC50057350A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 348BF7F822D0BCC50057350A;
+			remoteInfo = Dictionary;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		3413D1C222E1F52A00D0A210 /* TranslateInteractorTestableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInteractorTestableProtocol.swift; sourceTree = "<group>"; };
 		348BF7F922D0BCC50057350A /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348BF7FC22D0BCC50057350A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		348BF80322D0BCC60057350A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +112,12 @@
 		348BF85E22D12EB30057350A /* TranslationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TranslationResponse.swift; path = ../../TranslateModule/Entity/TranslationResponse.swift; sourceTree = "<group>"; };
 		348E562B22DB214100B89A08 /* SettingsParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsParams.swift; sourceTree = "<group>"; };
 		348E562E22DB241F00B89A08 /* SettingsParamsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsParamsProtocol.swift; sourceTree = "<group>"; };
+		348E563B22DE25DC00B89A08 /* DictionaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DictionaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		348E563F22DE25DC00B89A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		348E564522DE2A9900B89A08 /* TranslateModuleInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateModuleInteractorTest.swift; sourceTree = "<group>"; };
+		348E564A22DE37C700B89A08 /* InteractorOutputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorOutputMock.swift; sourceTree = "<group>"; };
+		348E564E22DE390D00B89A08 /* TranslateServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceMock.swift; sourceTree = "<group>"; };
+		348E565022DE3A1700B89A08 /* DataBaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseMock.swift; sourceTree = "<group>"; };
 		34A8358D22DA119D0070C05D /* TranslateApiUrl.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TranslateApiUrl.plist; path = Services/TranslateService/TranslateApiUrl.plist; sourceTree = "<group>"; };
 		34A8358F22DA2CCD0070C05D /* DataBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseClient.swift; sourceTree = "<group>"; };
 		34A8359122DA3E100070C05D /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
@@ -127,6 +149,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		348E563822DE25DC00B89A08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				348BF7FB22D0BCC50057350A /* Dictionary */,
+				348E563C22DE25DC00B89A08 /* DictionaryTests */,
 				348BF7FA22D0BCC50057350A /* Products */,
 				B4B2F6D10B834039EFFFFA0F /* Pods */,
 				9433DA6425626FF513CF0252 /* Frameworks */,
@@ -144,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				348BF7F922D0BCC50057350A /* Dictionary.app */,
+				348E563B22DE25DC00B89A08 /* DictionaryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -368,6 +399,27 @@
 			path = SettingsParams;
 			sourceTree = "<group>";
 		};
+		348E563C22DE25DC00B89A08 /* DictionaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				348E564C22DE384400B89A08 /* TranslateModuleInteractorTests */,
+				348E563F22DE25DC00B89A08 /* Info.plist */,
+			);
+			path = DictionaryTests;
+			sourceTree = "<group>";
+		};
+		348E564C22DE384400B89A08 /* TranslateModuleInteractorTests */ = {
+			isa = PBXGroup;
+			children = (
+				348E564522DE2A9900B89A08 /* TranslateModuleInteractorTest.swift */,
+				348E565022DE3A1700B89A08 /* DataBaseMock.swift */,
+				348E564A22DE37C700B89A08 /* InteractorOutputMock.swift */,
+				348E564E22DE390D00B89A08 /* TranslateServiceMock.swift */,
+				3413D1C222E1F52A00D0A210 /* TranslateInteractorTestableProtocol.swift */,
+			);
+			path = TranslateModuleInteractorTests;
+			sourceTree = "<group>";
+		};
 		34C938CD22D26B8E00FD74D9 /* DataBaseModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +481,24 @@
 			productReference = 348BF7F922D0BCC50057350A /* Dictionary.app */;
 			productType = "com.apple.product-type.application";
 		};
+		348E563A22DE25DC00B89A08 /* DictionaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 348E564222DE25DC00B89A08 /* Build configuration list for PBXNativeTarget "DictionaryTests" */;
+			buildPhases = (
+				348E563722DE25DC00B89A08 /* Sources */,
+				348E563822DE25DC00B89A08 /* Frameworks */,
+				348E563922DE25DC00B89A08 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				348E564122DE25DC00B89A08 /* PBXTargetDependency */,
+			);
+			name = DictionaryTests;
+			productName = DictionaryTests;
+			productReference = 348E563B22DE25DC00B89A08 /* DictionaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -441,6 +511,10 @@
 				TargetAttributes = {
 					348BF7F822D0BCC50057350A = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					348E563A22DE25DC00B89A08 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 348BF7F822D0BCC50057350A;
 					};
 				};
 			};
@@ -458,6 +532,7 @@
 			projectRoot = "";
 			targets = (
 				348BF7F822D0BCC50057350A /* Dictionary */,
+				348E563A22DE25DC00B89A08 /* DictionaryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -473,6 +548,13 @@
 				348BF83E22D0C7700057350A /* TranslatedListModule.storyboard in Resources */,
 				34A8358E22DA119D0070C05D /* TranslateApiUrl.plist in Resources */,
 				348BF83422D0C7020057350A /* TranslateModule.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		348E563922DE25DC00B89A08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,7 +655,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		348E563722DE25DC00B89A08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				348E565122DE3A1700B89A08 /* DataBaseMock.swift in Sources */,
+				3413D1C322E1F52A00D0A210 /* TranslateInteractorTestableProtocol.swift in Sources */,
+				348E564622DE2A9900B89A08 /* TranslateModuleInteractorTest.swift in Sources */,
+				348E564B22DE37C700B89A08 /* InteractorOutputMock.swift in Sources */,
+				348E564F22DE390D00B89A08 /* TranslateServiceMock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		348E564122DE25DC00B89A08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 348BF7F822D0BCC50057350A /* Dictionary */;
+			targetProxy = 348E564022DE25DC00B89A08 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		348BF80522D0BCC60057350A /* LaunchScreen.storyboard */ = {
@@ -741,6 +843,46 @@
 			};
 			name = Release;
 		};
+		348E564322DE25DC00B89A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49TJ4B58D9;
+				INFOPLIST_FILE = DictionaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArturRuzhnikov.DictionaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary.app/Dictionary";
+			};
+			name = Debug;
+		};
+		348E564422DE25DC00B89A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 49TJ4B58D9;
+				INFOPLIST_FILE = DictionaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArturRuzhnikov.DictionaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary.app/Dictionary";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -758,6 +900,15 @@
 			buildConfigurations = (
 				348BF80C22D0BCC60057350A /* Debug */,
 				348BF80D22D0BCC60057350A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		348E564222DE25DC00B89A08 /* Build configuration list for PBXNativeTarget "DictionaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348E564322DE25DC00B89A08 /* Debug */,
+				348E564422DE25DC00B89A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -95,14 +95,12 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
       }
       self.currentDictionaryObject = dictionaryObject
       DispatchQueue.main.async {
-        self.output.prepare(dictionaryObject: dictionaryObject)
+        self.interactorOutput.prepare(dictionaryObject: dictionaryObject)
       }
     }
   }
   func translate(text: String) {
     guard let currentDictionaryObject = self.currentDictionaryObject else {return}
-    let textBeforeTranslate = currentDictionaryObject.textForTranslate
-    print ("\(textBeforeTranslate)")
     currentDictionaryObject.textForTranslate = text
     if currentDictionaryObject.isDefault() {
       self.output.prepare(dictionaryObject: currentDictionaryObject)
@@ -119,6 +117,11 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
         return
       }
       currentDictionaryObject.time = NSDate()
+      guard !success.text.isEmpty else {
+        currentDictionaryObject.translatedText = ""
+        self.output.prepare(dictionaryObject: currentDictionaryObject)
+        return
+      }
       currentDictionaryObject.translatedText = success.text[0]
       self.output.prepare(dictionaryObject: currentDictionaryObject)
       if currentDictionaryObject.textForTranslate != currentDictionaryObject.translatedText {
@@ -133,6 +136,7 @@ extension TranslateModuleInteractor: TranslateModuleInteractorInputProtocol {
     self.interactorOutput.prepare(dictionaryObject: currentDictionaryObject)
   }
   func createChangeLanguageWindow(forTag: Int) {
+    if !(1...2 ~= forTag) {return}
     var selectLanguage: TranslationLanguages?
     let alertController = UIAlertController(title: "Select language", message: "You can change language for translate", preferredStyle: .alert)
     for (key, value) in currentDictionaryObject?.getSupportedLanguages() ?? [:] {
